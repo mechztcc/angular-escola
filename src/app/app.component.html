@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<ng-container>
+  <app-header *ngIf="authService.validateSession()"></app-header>
+  <div style="height: 100vh; margin-top: 0px;">
+    <div *ngIf="authService.validateSession()" class="sidenav w-25" id="sidenav" style="position: absolute; top: 55px; bottom: 0px;">
+      <app-sidenav id="sidenav"></app-sidenav>
+    </div>
+    <div class="content w-75 ml-25" id="content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</ng-container>

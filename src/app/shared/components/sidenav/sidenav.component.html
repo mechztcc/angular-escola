@@ -1,0 +1,27 @@
+
+<div class="list-group bg-primary " style="height: 100vh;">
+  <button type="button" class="list-group-item list-group-item-action bg-primary text-white text-center">
+    <span *ngIf="screenSize > 360">Schools</span>
+    <fa-icon class="ml-2" [icon]="icons.faSchool"></fa-icon>
+  </button>
+  <button type="button" class="list-group-item list-group-item-action bg-primary text-white text-center">
+    <span *ngIf="screenSize > 360">Classrooms</span>
+    <fa-icon class="ml-2" [icon]="icons.faHouseUser"></fa-icon>
+  </button>
+  <button type="button" class="list-group-item list-group-item-action bg-primary text-white text-center">
+    <span *ngIf="screenSize > 360">Teachers</span>
+    <fa-icon class="ml-2" [icon]="icons.faChalkboardTeacher"></fa-icon>
+  </button>
+  <button type="button" class="list-group-item list-group-item-action bg-primary text-white text-center">
+    <span *ngIf="screenSize > 360">Students</span>
+    <fa-icon class="ml-2" [icon]="icons.faGraduationCap"></fa-icon>
+  </button>
+  <button type="button" class="list-group-item list-group-item-action bg-primary text-white text-center">
+    <span *ngIf="screenSize > 360">Responsibles</span>
+    <fa-icon class="ml-2" [icon]="icons.faUser"></fa-icon>
+  </button>
+  <button (click)="logout()" type="button" class="list-group-item list-group-item-action bg-primary text-white text-center">
+    <span *ngIf="screenSize > 360">Exit</span>
+    <fa-icon class="ml-2" [icon]="icons.faSignOutAlt"></fa-icon>
+  </button>
+</div>

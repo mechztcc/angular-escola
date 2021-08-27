@@ -5,7 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,8 +18,8 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     UsersRoutingModule,
     FontAwesomeModule,
-
-
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }
