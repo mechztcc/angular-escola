@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,25 +15,18 @@ export class HeaderComponent implements OnInit {
 
   opened: boolean = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+
   toggle() {
+    this.opened = !this.opened;
+  }
 
-    if(this.opened) {
-      document.getElementById('sidenav')?.classList.add('hidden');
-      document.getElementById('content')?.classList.remove('w-75');
-      document.getElementById('content')?.classList.remove('ml-25');
-      this.opened = !this.opened;
-    } else {
-      document.getElementById('sidenav')?.classList.remove('hidden');
-      document.getElementById('content')?.classList.add('w-75');
-      document.getElementById('content')?.classList.add('ml-25');
-      this.opened = !this.opened;
-    }
-
+  exit() {
+    this.router.navigate(['users/login']);
   }
 
 }

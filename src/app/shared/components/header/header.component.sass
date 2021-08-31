@@ -1,0 +1,73 @@
+.navbar
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 40px
+    background-color: #8487EE
+    box-shadow: 4px 4px 4px #BCCCEC
+    padding: 10px
+
+    .logo
+        font-weight: bold
+        color: #FFF
+        height: 50px
+        img
+            height: 100%
+
+    .menu-toggle
+        display: none
+    
+    .links > a
+        text-decoration: none
+        color: #fff
+        padding: 5px
+        font-weight: bold
+
+    .links > a:hover
+        color: #FCA92D
+        
+.menu-mobile
+    display: none
+
+
+@media  (max-width: 360px)
+    .navbar
+        .menu-toggle
+            display: inline
+            background-color: transparent
+            border: 2px solid #FFF
+            border-radius: 5px
+            padding: 5px 10px
+
+            i
+                color: #FFF
+                font-size: 22px
+                
+
+        .links
+            display: none
+
+    .menu-mobile
+        display: flex
+        flex-direction: column
+        position: absolute
+        padding: 15px
+        right: -30%
+        height: 100vh
+        width: 30%
+        background-color: #8487EE
+        transition: all 0.5s
+        box-shadow: -4px 0px 4px #BCCCEC
+
+        a
+            text-decoration: none
+            color: #fff
+            padding: 5px
+            font-weight: bold
+        
+        a:hover
+            color: #FCA92D
+        
+            
+
+
