@@ -5,10 +5,18 @@
     </div>
   
     <div class="body">
-      <form>
-        <input type="text" placeholder="E-mail">
-        <input type="password" placeholder="Senha">
-        <button type="button">Entrar</button>
+      <form [formGroup]="form" (ngSubmit)="validateForm()">
+        <input type="text" placeholder="E-mail" formControlName="email" [ngClass]="{ 'error' : errors}">
+        <small *ngIf="errors">Campo Inválido!</small>
+        
+        <input type="password" placeholder="Senha" formControlName="password" [ngClass]="{ 'error' : errors}">
+        <small *ngIf="errors">Campo Inválido!</small>
+
+        <button type="submit" *ngIf="!loading" (click)="validateForm()">Entrar</button>
+        <button type="button" *ngIf="loading" disabled>
+          Entrando
+          <i class="uil uil-spinner-alt ml-2"></i>
+        </button>
       </form>
     </div>
     <div class="footer">

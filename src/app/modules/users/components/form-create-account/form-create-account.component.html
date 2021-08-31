@@ -5,12 +5,24 @@
     </div>
   
     <div class="body">
-      <form>
-        <input type="text" placeholder="Nome completo">
-        <input type="text" placeholder="E-mail">
-        <input type="text" placeholder="Senha">
-        <input type="text" placeholder="Confirmar senha">
-        <button type="button">Criar</button>
+      <form [formGroup]="form" (ngSubmit)="validateForm()">
+        <input type="text" placeholder="Nome completo" formControlName="name" [ngClass]="{ 'error' : errors}">
+        <small *ngIf="errors">Campo Inválido!</small>
+
+        <input type="text" placeholder="E-mail" formControlName="email"[ngClass]="{ 'error' : errors}">
+        <small *ngIf="errors">Campo Inválido!</small>
+
+        <input type="password" placeholder="Senha" formControlName="password" [ngClass]="{ 'error' : errors}">
+        <small *ngIf="errors">Campo Inválido!</small>
+
+        <input type="password" placeholder="Confirmar senha" formControlName="repeatPassword" [ngClass]="{ 'error' : errors}">
+        <small *ngIf="errors">Campo Inválido!</small>
+        
+        <button type="submit" *ngIf="!loading">Criar</button>
+        <button type="submit" *ngIf="loading">
+          Criando
+          <i class="uil uil-spinner-alt ml-2"></i>
+        </button>
       </form>
     </div>
     <div class="footer">

@@ -6,16 +6,48 @@
     <i class="uil uil-bars"></i>
   </button>
   <div class="links">
-    <a href="#">Schools</a>
-    <a href="#">Classrooms</a>
-    <a href="#">Students</a>
-    <a href="#">Teachers</a>
+    <a href="#">
+      <i class="uil uil-building"></i>
+      Schools
+    </a>
+    <a href="#">
+      <i class="uil uil-house-user"></i>
+      Classrooms
+    </a>
+    <a href="#">
+      <i class="uil uil-book-reader"></i>
+      Students
+    </a>
+    <a href="#">
+      <i class="uil uil-user"></i>
+      Teachers
+    </a>
+    <a [routerLink]="['/users/login']" (click)="exit()">
+      <i class="uil uil-signout"></i>
+      Sair
+    </a>
   </div>
 </div>
 
 <div class="menu-mobile" [ngStyle]="{right: opened ? '-38%' : '0'}">
-  <a href="#">Schools</a>
-  <a href="#">Classrooms</a>
-  <a href="#">Students</a>
-  <a href="#">Teachers</a>
+  <a href="#">
+    <i class="uil uil-building"></i>
+    Schools
+  </a>
+  <a href="#">
+    <i class="uil uil-house-user"></i>
+    Class
+  </a>
+  <a href="#">
+    <i class="uil uil-book-reader"></i>
+    Students
+  </a>
+  <a href="#">
+    <i class="uil uil-user"></i>
+    Teachers
+  </a>
+  <a [routerLink]="['/users/login']" (click)="exit()">
+    <i class="uil uil-signout"></i>
+    Sair
+  </a>
 </div>
