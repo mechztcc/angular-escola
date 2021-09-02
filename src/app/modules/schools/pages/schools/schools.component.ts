@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ISchool } from '../../shared/interfaces/school';
+import { IUserSchools } from '../../shared/interfaces/user-schools';
+import { SchoolsService } from '../../shared/schools.service';
 
 @Component({
   selector: 'app-schools',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchoolsComponent implements OnInit {
 
-  constructor() { }
+  userSchools: ISchool[];
+  loading: boolean = false;
+
+  constructor(private schoolsService: SchoolsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.listSchools();
+  }
+
+  listSchools() {
+    this.spinner.show();
+    this.schoolsService.listAllByUserId()
+      .subscribe((data: IUserSchools) => {
+        this.userSchools = data.school;
+      }).add(() => {
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 2000);
+      })
   }
 
 }

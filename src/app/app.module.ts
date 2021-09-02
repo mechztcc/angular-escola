@@ -12,6 +12,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { SidenavComponent } from './shared/components/sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HandlerTokenInterceptor } from './core/interceptors/handler-token.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,14 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     FontAwesomeModule,
     HttpClientModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot()
 
     
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HandlerTokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

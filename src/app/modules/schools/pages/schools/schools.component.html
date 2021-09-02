@@ -8,12 +8,10 @@
     </div>
 </div>
 
+
 <div class="container-grid">
-    <app-card-select-school></app-card-select-school>
-    <app-card-select-school></app-card-select-school>
-    <app-card-select-school></app-card-select-school>
-    <app-card-select-school></app-card-select-school>
-    <app-card-select-school></app-card-select-school>
-    <app-card-select-school></app-card-select-school>
-    <app-card-select-school></app-card-select-school>
+    <app-card-select-school *ngFor="let school of userSchools" [school]="school"></app-card-select-school>
 </div>
+
+
+

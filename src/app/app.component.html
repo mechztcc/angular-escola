@@ -1,4 +1,5 @@
 <ng-container>
   <app-header *ngIf="authService.validateSession()"></app-header>
+  <ngx-spinner bdColor = "rgba(132, 135, 238, 0.5)" size = "medium" color = "#8487ee" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Carregando... </p></ngx-spinner>
   <router-outlet></router-outlet>
 </ng-container>
