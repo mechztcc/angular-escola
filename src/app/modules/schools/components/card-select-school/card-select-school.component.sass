@@ -1,0 +1,51 @@
+
+.card
+    display: flex
+    flex-direction: column
+    max-width: 250px
+    min-width: 150px
+
+    background-color: #FFF
+    border-radius: 5px
+    box-shadow: 4px 4px 4px #BCCCEC
+    
+    .header
+        position: relative
+        img
+            width: 100%
+
+        .tag
+            position: absolute
+            top: 0
+            right: 0
+            border-radius: 5px 0px 0 5px
+            padding: 3px
+            color: #FFF
+            box-shadow: 4px 4px 4px #BCCCEC
+        
+        .complete
+            background-color: #8487EE
+
+        .running
+            background-color: #FCA92D
+
+    .body
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 5px
+
+        span
+            font-weight: bold
+        button
+            background-color: #FCA92D
+            color: #FFF
+            font-weight: bold
+            border: none
+            border-radius: 5px
+            padding: 8px 15px
+
+            i
+                font-weight: bold
+            

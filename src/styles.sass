@@ -11,23 +11,52 @@ body
     font-family: 'Rajdhani', sans-serif
 
 
-.ml-2
-    margin-left: 2%
+
 
 .container
     display: flex
     width: 70%
     height: 100%
     margin: 0 auto
+    align-items: center
+
+    .ml-2
+        margin-left: 2%
 
     .m-0
         margin: 0 auto
 
+    .mt-5
+        margin-top: 5%        
 
+.space-around
+    justify-content: space-around
 
+.space-between
+    justify-content: space-between
+
+.container-grid
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-gap: 20px
+    width: 70%
+    margin: 0 auto
+    margin-top: 5%
+    margin-bottom: 10%
 
 
 
 @media  (max-width: 360px)
     .container
+        display: flex
+        flex-direction: column
+        align-items: start
         width: 90%
+
+        .search
+            margin-bottom: 5px
+
+
+    .container-grid
+        display: grid
+        grid-template-columns: 1fr

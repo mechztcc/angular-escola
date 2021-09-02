@@ -1,12 +1,12 @@
 <div class="navbar">
-  <div class="logo">
+  <div class="logo" [routerLink]="['/']">
     <img src="assets/logo2.png" alt="logo">
   </div>
   <button class="menu-toggle" (click)="toggle()">
     <i class="uil uil-bars"></i>
   </button>
   <div class="links">
-    <a href="#">
+    <a [routerLink]="['/schools']">
       <i class="uil uil-building"></i>
       Schools
     </a>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="menu-mobile" [ngStyle]="{right: opened ? '-38%' : '0'}">
-  <a href="#">
+  <a [routerLink]="['/schools']">
     <i class="uil uil-building"></i>
     Schools
   </a>
