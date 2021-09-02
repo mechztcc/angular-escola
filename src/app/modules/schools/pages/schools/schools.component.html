@@ -8,10 +8,22 @@
     </div>
 </div>
 
-
-<div class="container-grid">
-    <app-card-select-school *ngFor="let school of userSchools" [school]="school"></app-card-select-school>
+<div class="container space-between">
+    <button>
+        Criar nova
+        <i class="uil uil-plus"></i>
+    </button>
 </div>
 
+<ng-container *ngIf="userSchools.length > 0 else noContent">
+    <div class="container-grid">
+        <app-card-select-school *ngFor="let school of userSchools" [school]="school"></app-card-select-school>
+    </div>
+</ng-container>
 
 
+<ng-template #noContent>
+    <div class="container" style="align-items: center; justify-content: center;">
+        <span style="color: #8487EE;">Nenhuma Escola Encontrada. <i class="uil uil-folder-question" style="color: #8487EE;"></i></span>
+    </div>
+</ng-template>

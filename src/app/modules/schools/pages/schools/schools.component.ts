@@ -26,9 +26,7 @@ export class SchoolsComponent implements OnInit {
       .subscribe((data: IUserSchools) => {
         this.userSchools = data.school;
       }).add(() => {
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 2000);
+        this.spinner.hide();
       })
   }
 
