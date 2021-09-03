@@ -17,7 +17,7 @@ export class SchoolsComponent implements OnInit {
   userSchools: ISchool[];
   loading: boolean = false;
 
-  createSchool: boolean = true;
+  createSchool: boolean = false;
   form: FormGroup;
   school: ICreateScholl;
 

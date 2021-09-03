@@ -43,14 +43,25 @@
             color: #8487EE
             margin: 5px
 
-        button
-            background-color: #FCA92D
-            color: #FFF
-            font-weight: bold
-            border: none
-            border-radius: 5px
-            padding: 8px 15px
+        .buttons
+            display: flex
 
-            i
+            button
+                display: flex
+                justify-content: center
+                align-items: center
+                color: #FFF
                 font-weight: bold
+                border: none
+                border-radius: 5px
+                padding: 8px 15px
+                margin: 1%
+
+                i
+                    font-weight: bold
             
+            .danger
+                width: 20%
+                background-color: #FCA92D
+            .warning
+                background-color: #8487EE
