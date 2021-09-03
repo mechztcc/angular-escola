@@ -50,7 +50,14 @@ body
     margin-top: 5%
     margin-bottom: 10%
 
-
+.container-column
+    display: flex
+    flex-direction: column
+    transition: all ease 1s
+    width: 70%
+    margin: 0 auto
+    margin-top: 2%
+    margin-bottom: 10%
 
 @media  (max-width: 360px)
     .container
@@ -63,6 +70,12 @@ body
             margin-bottom: 5px
 
 
+    .container-column
+        display: flex
+        flex-direction: column
+
     .container-grid
         display: grid
         grid-template-columns: 1fr
+
+    

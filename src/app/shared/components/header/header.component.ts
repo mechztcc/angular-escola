@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
     faBars: faBars
   }
 
-  opened: boolean = true;
+  opened: boolean = false;
 
   constructor(private router: Router) { }
 

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SchoolsRoutingModule } from './schools-routing.module';
 import { SchoolsComponent } from './pages/schools/schools.component';
 import { CardSelectSchoolComponent } from './components/card-select-school/card-select-school.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { CardSelectSchoolComponent } from './components/card-select-school/card-
   ],
   imports: [
     CommonModule,
-    SchoolsRoutingModule
+    SchoolsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SchoolsModule { }
