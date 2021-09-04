@@ -1,8 +1,9 @@
 .navbar
     display: flex
+    flex-direction: column
     justify-content: space-between
     align-items: center
-    height: 40px
+    // height: 100%
     background-color: #8487EE
     box-shadow: 4px 4px 4px #BCCCEC
     padding: 10px
@@ -18,13 +19,18 @@
         display: none
     
     .links > a
+        position: relative
         text-decoration: none
         color: #fff
         padding: 5px
         font-weight: bold
 
+        
+            
+
     .links > a:hover
         color: #FCA92D
+
         
 .menu-mobile
     display: none
@@ -32,6 +38,7 @@
 
 @media  (max-width: 360px)
     .navbar
+        flex-direction: row
         .menu-toggle
             display: inline
             background-color: transparent
@@ -52,8 +59,9 @@
         flex-direction: column
         position: absolute
         padding: 15px
-        right: -30%
-        height: 100vh
+        right: 0
+        z-index: 2
+        height: 100%
         width: 30%
         background-color: #8487EE
         transition: all 0.5s
