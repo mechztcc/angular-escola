@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { ISchool } from '../../shared/interfaces/school';
 
 @Component({
@@ -10,11 +11,16 @@ export class CardSelectSchoolComponent implements OnInit {
 
   @Input() school: ISchool;
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.school);
-    
+  }
+
+
+  navigateToSchool() {
+    this.router.navigate([`schools/${this.school.id}`]);
   }
 
 }

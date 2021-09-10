@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -12,20 +12,33 @@ import { SchoolsService } from '../../shared/schools.service';
   templateUrl: './schools.component.html',
   styleUrls: ['./schools.component.sass']
 })
-export class SchoolsComponent implements OnInit {
+export class SchoolsComponent implements OnInit, OnChanges {
 
-  userSchools: ISchool[];
+  userSchools: ISchool[] = [];
   loading: boolean = false;
+  schoolFilter: ISchool[];
 
   createSchool: boolean = false;
   form: FormGroup;
   school: ICreateScholl;
 
+  // date: string = Date.now().toString();
+
   constructor(private schoolsService: SchoolsService, private spinner: NgxSpinnerService, private formBuilder: FormBuilder, private toastr: ToastrService) { }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.schoolFilter = this.userSchools; 
+  }
 
   ngOnInit(): void {
     this.listSchools();
     this.initForm();
+    
+  }
+
+  filter(name: any) {
+    console.log(name);
+    
   }
 
   initForm() {

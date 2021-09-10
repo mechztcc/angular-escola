@@ -10,18 +10,6 @@
       <i class="uil uil-building"></i>
       Schools
     </a>
-    <a href="#">
-      <i class="uil uil-house-user"></i>
-      Classrooms
-    </a>
-    <a href="#">
-      <i class="uil uil-book-reader"></i>
-      Students
-    </a>
-    <a href="#">
-      <i class="uil uil-user"></i>
-      Teachers
-    </a>
     <a [routerLink]="['/users/login']" (click)="exit()">
       <i class="uil uil-signout"></i>
       Sair
@@ -29,22 +17,10 @@
   </div>
 </div>
 
-<div class="menu-mobile" [ngStyle]="{width: opened ? '30%' : '0'}">
+<div class="menu-mobile" [ngStyle]="{width: opened ? '40%' : '0'}">
   <a [routerLink]="['/schools']">
     <i class="uil uil-building"></i>
     <span *ngIf="opened">Escolas</span>
-  </a>
-  <a href="#">
-    <i class="uil uil-house-user"></i>
-    <span *ngIf="opened">Classes</span>
-  </a>
-  <a href="#">
-    <i class="uil uil-book-reader"></i>
-    <span *ngIf="opened">Alunos</span>
-  </a>
-  <a href="#">
-    <i class="uil uil-user"></i>
-    <span *ngIf="opened">Professores</span>
   </a>
   <a [routerLink]="['/users/login']" (click)="exit()">
     <i class="uil uil-signout"></i>

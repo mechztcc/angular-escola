@@ -1,13 +1,14 @@
 <div class="card">
     <div class="header">
-        <img src="assets/card-img.png" alt="">
-        <div class="tag complete">Concluído</div>
+        <img src="assets/classrooms.png" alt="">
     </div>
     <div class="body">
-        <span>{{ school.name}}</span>
-        <small>{{ school.created_at}}</small>
+        <span>{{ classroom.name }}</span>
+        <div class="info">
+            <small>Alunos cadastrados: {{ classroom.students.length }}</small>
+        </div>
         <div class="buttons">
-            <button class="warning" type="button" (click)="navigateToSchool()">
+            <button class="warning" type="button">
                 Selecionar
             </button>
             <button class="danger" type="button">
