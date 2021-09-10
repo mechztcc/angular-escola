@@ -6,6 +6,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './pages/home/home.component';
 
+import { SharedRoutingModule } from './shared-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -14,8 +16,15 @@ import { HomeComponent } from './pages/home/home.component';
     HomeComponent
   ],
   imports: [
-  CommonModule,
+    CommonModule,
+    SharedRoutingModule,
     FontAwesomeModule
+    
+  ],
+  exports: [
+    HeaderComponent,
+    SidenavComponent,
+    HomeComponent
   ]
 })
 export class SharedModule { }

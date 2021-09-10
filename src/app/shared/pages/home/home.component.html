@@ -1,0 +1,30 @@
+
+
+<div class="container">
+    <div class="welcome shadow">
+        <div class="header">
+            <h5>Bem-vindo senhor <b>{{ user }}</b></h5>
+            <small>{{  email }}</small>
+        </div>
+        <img src="assets/welcome.png" alt="">
+    </div>
+</div>
+
+<div class="container-grid">
+    <div class="card shadow" (click)="navegate(1)">
+        <span>Escolas</span>
+        <small>{{ schools.length }}</small>
+    </div>
+    <div class="card shadow" (click)="navegate(2)">
+        <span>Turmas</span>
+        <small>124</small>
+    </div>
+    <div class="card shadow" (click)="navegate(3)">
+        <span>Alunos</span>
+        <small>1035</small>
+    </div>
+    <div class="card shadow" (click)="navegate(4)">
+        <span>Professores</span>
+        <small>39</small>
+    </div>
+</div>
