@@ -7,13 +7,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './pages/home/home.component';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { DateComponent } from './components/date/date.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
+    DateComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { SharedRoutingModule } from './shared-routing.module';
   exports: [
     HeaderComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
+    DateComponent
   ]
 })
 export class SharedModule { }

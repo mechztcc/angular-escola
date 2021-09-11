@@ -20,12 +20,14 @@ export class HomeComponent implements OnInit {
   students: Student[] = [];
   classrooms: Classroom[] = [];
   teachers: ITeacher[] = [];
+  date: Date;
 
 
   constructor(private router: Router, private schoolsService: SchoolsService) { }
 
   ngOnInit(): void {
     this.listSchools();
+    this.date = new Date()
   }
 
 
