@@ -9,10 +9,14 @@ export function reducer(state = initialState, action: fromSchoolActions.SchoolAc
     switch (action.type) {
         case fromSchoolActions.SchoolActionTypes.SCHOOL_NEW:
             state = [...state, action.payload.school]
-            console.log(state);
             return state;
             break;
-    
+            
+        case fromSchoolActions.SchoolActionTypes.SCHOOL_ALL:
+            return state;
+            break;
+
+
         default:
             return state
             break;

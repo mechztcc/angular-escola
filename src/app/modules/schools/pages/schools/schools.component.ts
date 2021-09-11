@@ -1,7 +1,10 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/core/store';
 import { ICreateScholl } from '../../shared/interfaces/create-school';
 import { ISchool } from '../../shared/interfaces/school';
 import { IUserSchools } from '../../shared/interfaces/user-schools';
@@ -22,18 +25,33 @@ export class SchoolsComponent implements OnInit, OnChanges {
   form: FormGroup;
   school: ICreateScholl;
 
+  schools$: Observable<any>;
+
   // date: string = Date.now().toString();
 
-  constructor(private schoolsService: SchoolsService, private spinner: NgxSpinnerService, private formBuilder: FormBuilder, private toastr: ToastrService) { }
+  constructor(private schoolsService: SchoolsService, private spinner: NgxSpinnerService, private formBuilder: FormBuilder, private toastr: ToastrService, private store: Store<AppState>) { }
   
   ngOnChanges(changes: SimpleChanges): void {
     this.schoolFilter = this.userSchools; 
   }
 
   ngOnInit(): void {
-    this.listSchools();
     this.initForm();
+    this.listStore();
     
+  }
+
+  listStore() {
+    this.schools$ = this.store.pipe(select('school'));
+    this.schools$.subscribe(
+      (data) => {
+        if(data.length > 0) {
+          this.userSchools = data;    
+        } else {
+          this.listSchools();
+        }
+      }
+    )
   }
 
   filter(name: any) {
