@@ -6,17 +6,34 @@
   
     <div class="body">
       <form [formGroup]="form" (ngSubmit)="validateForm()">
-        <input type="text" placeholder="Nome completo" formControlName="name" [ngClass]="{ 'error' : errors}">
-        <small *ngIf="errors">Campo Inválido!</small>
+        <div class="input-group">
+          <!-- Reset form after click, to remove errors -->
+          <input type="text" placeholder="Nome completo" formControlName="name" [ngClass]="{ 'error' : errors}">
+          <i *ngIf="(!errors && !form.controls.name.invalid)" class="uil uil-check"></i>
+          <i *ngIf="errors" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+          <small *ngIf="errors">Campo Inválido!</small>
+        </div>
+        <div class="input-group">
+          <input type="text" placeholder="E-mail" formControlName="email"[ngClass]="{ 'error' : errors}">
+          <i *ngIf="!errors && !form.controls.email.pristine" class="uil uil-check"></i>
+          <i *ngIf="errors" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+          <small *ngIf="errors">Campo Inválido!</small>
+        </div>
 
-        <input type="text" placeholder="E-mail" formControlName="email"[ngClass]="{ 'error' : errors}">
-        <small *ngIf="errors">Campo Inválido!</small>
+        <div class="input-group">
+          <input type="password" placeholder="Senha" formControlName="password" [ngClass]="{ 'error' : errors}">
+          <i *ngIf="!errors && !form.controls.password.pristine" class="uil uil-check"></i>
+          <i *ngIf="errors" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+          <small *ngIf="errors">Campo Inválido!</small>
+        </div>
 
-        <input type="password" placeholder="Senha" formControlName="password" [ngClass]="{ 'error' : errors}">
-        <small *ngIf="errors">Campo Inválido!</small>
+        <div class="input-group">
+          <input type="password" placeholder="Confirmar senha" formControlName="repeatPassword" [ngClass]="{ 'error' : errors}">
+          <i *ngIf="!errors && !form.controls.repeatPassword.pristine" class="uil uil-check"></i>
+          <i *ngIf="errors" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+          <small *ngIf="errors">Campo Inválido!</small>
+        </div>
 
-        <input type="password" placeholder="Confirmar senha" formControlName="repeatPassword" [ngClass]="{ 'error' : errors}">
-        <small *ngIf="errors">Campo Inválido!</small>
         
         <button type="submit" *ngIf="!loading">Criar</button>
         <button type="submit" *ngIf="loading">

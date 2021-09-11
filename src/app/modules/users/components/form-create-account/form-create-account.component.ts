@@ -53,8 +53,7 @@ export class FormCreateAccountComponent implements OnInit {
         email: this.form.controls.email.value, 
         password: this.form.controls.password.value
       }
-      this.createAccount();
-    
+      this.createAccount();    
     }
   }
 
