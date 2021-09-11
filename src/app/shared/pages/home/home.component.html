@@ -17,14 +17,14 @@
     </div>
     <div class="card shadow" (click)="navegate(2)">
         <span>Turmas</span>
-        <small>124</small>
+        <small>{{ classrooms.length}}</small>
     </div>
     <div class="card shadow" (click)="navegate(3)">
         <span>Alunos</span>
-        <small>1035</small>
+        <small>{{ students.length }}</small>
     </div>
     <div class="card shadow" (click)="navegate(4)">
         <span>Professores</span>
-        <small>39</small>
+        <small>{{ teachers.length }}</small>
     </div>
 </div>

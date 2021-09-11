@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Classroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
 import { ISchool } from 'src/app/modules/schools/shared/interfaces/school';
 import { IUserSchools } from 'src/app/modules/schools/shared/interfaces/user-schools';
 import { SchoolsService } from 'src/app/modules/schools/shared/schools.service';
+import { Student } from 'src/app/modules/students/shared/interfaces/student';
+import { ITeacher } from 'src/app/modules/teachers/shared/interfaces/teacher';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +17,10 @@ export class HomeComponent implements OnInit {
   user: string = localStorage.getItem('user');
   email: string = '';
   schools: ISchool[] = [];
+  students: Student[] = [];
+  classrooms: Classroom[] = [];
+  teachers: ITeacher[] = [];
+
 
   constructor(private router: Router, private schoolsService: SchoolsService) { }
 
@@ -26,7 +33,34 @@ export class HomeComponent implements OnInit {
     this.schoolsService.listAllByUserId()
       .subscribe((data: IUserSchools) => {
         this.schools = data.school;
-        this.email = data.email;  
+        this.email = data.email;
+        data.school.forEach((escola, index) => {
+          if(escola.teachers.length > 0) {
+            escola.teachers.forEach((teacher, index) => {
+              this.teachers.push(teacher);
+            })
+          }
+          
+
+          if(escola.classrooms.length > 0) {
+
+            escola.classrooms.forEach((classroom, index) => {
+              this.classrooms.push(classroom);
+              
+              if(classroom.students.length > 0) {
+
+                classroom.students.forEach((student, index) => {
+                  this.students.push(student);
+                })
+                
+              }
+
+            })
+          }
+          
+
+        })
+        
       })
   }
 
