@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/store';
 import { Classroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
 import { ISchool } from 'src/app/modules/schools/shared/interfaces/school';
 import { IUserSchools } from 'src/app/modules/schools/shared/interfaces/user-schools';
 import { SchoolsService } from 'src/app/modules/schools/shared/schools.service';
+import { SchoolNew } from 'src/app/modules/schools/shared/store/schools.actions';
 import { Student } from 'src/app/modules/students/shared/interfaces/student';
 import { ITeacher } from 'src/app/modules/teachers/shared/interfaces/teacher';
 
@@ -23,7 +26,7 @@ export class HomeComponent implements OnInit {
   date: Date;
 
 
-  constructor(private router: Router, private schoolsService: SchoolsService) { }
+  constructor(private router: Router, private schoolsService: SchoolsService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.listSchools();
@@ -36,7 +39,13 @@ export class HomeComponent implements OnInit {
       .subscribe((data: IUserSchools) => {
         this.schools = data.school;
         this.email = data.email;
+
+
+
         data.school.forEach((escola, index) => {
+
+          this.store.dispatch(new SchoolNew({ school: escola }))
+
           if(escola.teachers.length > 0) {
             escola.teachers.forEach((teacher, index) => {
               this.teachers.push(teacher);

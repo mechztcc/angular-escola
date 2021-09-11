@@ -12,6 +12,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { HandlerTokenInterceptor } from './core/interceptors/handler-token.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from './shared/shared.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+
+import { appReducers } from './core/store';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,9 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     NgxSpinnerModule,
     SharedModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(appReducers)
 
     
   ],
