@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 
 import { appReducers } from './core/store';
+import { ErrorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { appReducers } from './core/store';
     
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HandlerTokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HandlerTokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
