@@ -1,4 +1,4 @@
-import { Classroom } from "src/app/modules/classrooms/shared/interfaces/classroom";
+import { IClassroom } from "src/app/modules/classrooms/shared/interfaces/classroom";
 import { ITeacher } from "src/app/modules/teachers/shared/interfaces/teacher";
 
 export interface ISchool {
@@ -6,6 +6,6 @@ export interface ISchool {
     name: string;
     created_at?: string;
     updated_at?: string;
-    classrooms?: Classroom[];
+    classrooms?: IClassroom[];
     teachers?: ITeacher[];
 }

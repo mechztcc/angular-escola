@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Classroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
+import { IClassroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
 import { IClassroomsOfSchool } from '../../shared/interfaces/classrooms-of-school';
 import { ISchool } from '../../shared/interfaces/school';
 import { SchoolsService } from '../../shared/schools.service';
@@ -14,7 +14,7 @@ export class SchoolHomeComponent implements OnInit {
 
   schoolId: number;
   school: ISchool;
-  classrooms: Classroom[] = [];
+  classrooms: IClassroom[] = [];
 
   loading: boolean = false;
 

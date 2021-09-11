@@ -1,6 +1,6 @@
 import { Student } from "src/app/modules/students/shared/interfaces/student";
 
-export interface Classroom {
+export interface IClassroom {
     id: number;
     name: string;
     created_at: string;

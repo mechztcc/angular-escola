@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Classroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
+import { IClassroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
 
 @Component({
   selector: 'app-card-classroom',
@@ -10,7 +10,7 @@ import { Classroom } from 'src/app/modules/classrooms/shared/interfaces/classroo
 export class CardClassroomComponent implements OnInit {
 
 
-  @Input() classroom: Classroom;
+  @Input() classroom: IClassroom;
 
   constructor(private router: Router) { }
 

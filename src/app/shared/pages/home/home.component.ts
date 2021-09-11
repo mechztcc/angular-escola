@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
-import { Classroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
+import { IClassroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
 import { ISchool } from 'src/app/modules/schools/shared/interfaces/school';
 import { IUserSchools } from 'src/app/modules/schools/shared/interfaces/user-schools';
 import { SchoolsService } from 'src/app/modules/schools/shared/schools.service';
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   email: string = '';
   schools: ISchool[] = [];
   students: Student[] = [];
-  classrooms: Classroom[] = [];
+  classrooms: IClassroom[] = [];
   teachers: ITeacher[] = [];
   date: Date;
 
