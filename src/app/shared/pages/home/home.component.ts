@@ -4,11 +4,13 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
 import { IClassroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
+import { ClassroomNew } from 'src/app/modules/classrooms/shared/store/classrooms.actions';
 import { ISchool } from 'src/app/modules/schools/shared/interfaces/school';
 import { IUserSchools } from 'src/app/modules/schools/shared/interfaces/user-schools';
 import { SchoolsService } from 'src/app/modules/schools/shared/schools.service';
 import { SchoolNew } from 'src/app/modules/schools/shared/store/schools.actions';
 import { Student } from 'src/app/modules/students/shared/interfaces/student';
+import { StudentAll, StudentNew } from 'src/app/modules/students/shared/store/students.actions';
 import { ITeacher } from 'src/app/modules/teachers/shared/interfaces/teacher';
 
 @Component({
@@ -33,7 +35,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.date = new Date();
-    this.listStoreSchools();
+    // this.listStoreSchools();
+    this.listSchools();
   }
 
   listStoreSchools() {
@@ -56,37 +59,31 @@ export class HomeComponent implements OnInit {
         this.schools = data.school;
         this.email = data.email;
         data.school.forEach((escola, index) => {
-
           this.store.dispatch(new SchoolNew({ school: escola }))
-
           if(escola.teachers.length > 0) {
             escola.teachers.forEach((teacher, index) => {
               this.teachers.push(teacher);
             })
           }
-          
-
+      
           if(escola.classrooms.length > 0) {
-
             escola.classrooms.forEach((classroom, index) => {
               this.classrooms.push(classroom);
+              this.store.dispatch(new ClassroomNew({ classroom: classroom }))
               
               if(classroom.students.length > 0) {
-
                 classroom.students.forEach((student, index) => {
+                  this.store.dispatch(new StudentNew({ student: student }))
                   this.students.push(student);
-                })
-                
-              }
 
+                  
+                })
+              }
             })
           }
-          
-
         })
-        
       })
-  }
+    }
 
   navegate(value: number) {
     switch (value) {

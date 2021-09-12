@@ -5,25 +5,12 @@
   <button class="menu-toggle" (click)="toggle()">
     <i class="uil uil-bars"></i>
   </button>
-  <div class="links">
-    <a [routerLink]="['/schools']">
-      <i class="uil uil-building"></i>
-      Schools
-    </a>
-    <a [routerLink]="['/users/login']" (click)="exit()">
-      <i class="uil uil-signout"></i>
-      Sair
-    </a>
-  </div>
 </div>
 
-<div class="menu-mobile" [ngStyle]="{width: opened ? '40%' : '0'}">
-  <a [routerLink]="['/schools']">
-    <i class="uil uil-building"></i>
-    <span *ngIf="opened">Escolas</span>
-  </a>
-  <a [routerLink]="['/users/login']" (click)="exit()">
-    <i class="uil uil-signout"></i>
-    <span *ngIf="opened">Sair</span>
-  </a>
+
+<div class="profile" *ngIf="opened">
+  <ul>
+    <li>Início</li>
+    <li>Configurações</li>
+  </ul>
 </div>
