@@ -1,17 +1,99 @@
 
 .container
     margin-top: 5%
+    .card
+        display: flex
+        justify-content: flex-start
+        width: 100%
+        background-color: #FFF
+        padding: 2%
+        border-radius: 5px
+        border-bottom: 2px solid #8487EE
+
+        span
+            color: #67688C
     button
         background-color: #8487EE
         border: none
         border-radius: 5px
         padding: 1% 2%
+        color: #FFF
+        font-weight: bold
 
         i
             color: #FFF
             font-weight: bold
             font-size: 15px
+            
 
     button:hover
         background-color: #8488eed5
+
+    .search
+        input
+            color: #8788AC
+            padding: 10px 15px
+            border-radius: 5px
+            border: none
+            font-style: italic
+            box-shadow: 4px 4px 4px #BCCCEC
+
+        input:focus
+            outline: none
     
+
+.container-column
+    background-color: #FFF
+    padding: 15px
+    border: none
+    border-radius: 5px
+    box-shadow: 4px 4px 4px #BCCCEC
+    transition: all 0.5s
+
+
+    form
+        display: flex
+        flex-direction: column
+        label
+            font-weight: bold
+            color: #8487EE
+            margin: 1%
+
+
+        .input-prepend
+            display: flex
+            align-items: center
+            border: 1px solid #8788AC
+            padding: 2px
+            border-radius: 5px
+            margin-bottom: 2%
+
+            i
+                background-color: #ceceda8a
+                padding: 1%
+                color: #8487EE
+                border-radius: 3px
+            input
+                width: 50%
+                border: none
+                margin-left: 2%
+                height: 30px
+            
+            input:focus
+                outline: none
+
+        .buttons
+            display: flex
+            justify-content: flex-end
+
+            button
+                background-color: #8487EE
+                // box-shadow: 4px 4px 4px #BCCCEC
+                border: none
+                border-radius: 5px
+                padding: 10px
+                font-weight: bold
+                color: #FFF
+
+                i
+                    font-weight: bold

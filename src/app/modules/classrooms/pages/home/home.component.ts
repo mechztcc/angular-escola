@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -16,10 +17,25 @@ export class HomeComponent implements OnInit {
   classrooms$: Observable<any>;
   classrooms: IClassroom[] = [];
 
-  constructor(private store: Store<AppState>, private classroomsService: ClassroomsService, private router: Router) { }
+  createClassroom: boolean = false;
+
+  form: FormGroup;
+
+  loading: boolean = false;
+
+  constructor(private store: Store<AppState>, private classroomsService: ClassroomsService, private router: Router, private formBuild: FormBuilder) { }
 
   ngOnInit(): void {
     this.listStore();
+    this.initForm();
+  }
+
+  initForm() {
+    this.form = this.formBuild.group({
+      name: ['', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])]
+    })
   }
 
   listStore() {
@@ -42,6 +58,15 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  validateForm() {}
+
+  filter(name: any) {
+    console.log(name);
+  }
+
+  toggleCreate() {
+    this.createClassroom = !this.createClassroom;
+  }
 
   navigate() {
     this.router.navigate([''])

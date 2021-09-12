@@ -3,6 +3,45 @@
         <button (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
         <app-date></app-date>
     </div>
+
+    <div class="container">
+        <div class="card ">
+            <span >Turmas cadastradas no Sistema {{ classrooms.length }}</span>
+        </div>
+    </div>
+
+    <div class="container space-between">
+        <button type="button" (click)="toggleCreate()">
+            Criar nova
+            <i class="uil uil-plus"></i>
+        </button>
+        <div class="search">
+            <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
+        </div>
+    </div>
+
+    <ng-container *ngIf="createClassroom">
+        <div class="container-column">
+            <form [formGroup]="form" (ngSubmit)="validateForm()">
+                <label for="name">Cadastrar nova turma</label>
+                <div class="input-prepend">
+                    <i class="uil uil-graduation-cap"></i>
+                    <input type="text" placeholder="Nome da turma" formControlName="name">
+                </div>
+                <div class="buttons">
+                    <button *ngIf="!loading">
+                        Criar
+                        <i class="uil uil-check"></i>
+                    </button>
+                    <button *ngIf="loading">
+                        Processando
+                        <i class="uil uil-sync"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+
     <div class="container-grid">
         <div *ngFor="let classroom of classrooms">
            <app-card-select-classroom [classroom]="classroom"></app-card-select-classroom>

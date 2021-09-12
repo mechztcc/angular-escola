@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CardSelectClassroomComponent } from './components/card-select-classroom/card-select-classroom.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +19,8 @@ import { CardSelectClassroomComponent } from './components/card-select-classroom
   imports: [
     CommonModule,
     ClassroomsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
