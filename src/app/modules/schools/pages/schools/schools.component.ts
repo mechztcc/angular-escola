@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +30,7 @@ export class SchoolsComponent implements OnInit, OnChanges {
 
   // date: string = Date.now().toString();
 
-  constructor(private schoolsService: SchoolsService, private spinner: NgxSpinnerService, private formBuilder: FormBuilder, private toastr: ToastrService, private store: Store<AppState>) { }
+  constructor(private router: Router, private schoolsService: SchoolsService, private spinner: NgxSpinnerService, private formBuilder: FormBuilder, private toastr: ToastrService, private store: Store<AppState>) { }
   
   ngOnChanges(changes: SimpleChanges): void {
     this.schoolFilter = this.userSchools; 
@@ -101,6 +102,10 @@ export class SchoolsComponent implements OnInit, OnChanges {
 
   atualizar() {
     this.listSchools();
+  }
+
+  navigate() {
+    this.router.navigate([''])
   }
 
 }

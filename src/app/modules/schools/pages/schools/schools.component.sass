@@ -1,10 +1,21 @@
 .container
     margin-top: 5%
+    .card
+        display: flex
+        justify-content: flex-start
+        width: 100%
+        background-color: #FFF
+        padding: 2%
+        border-radius: 5px
+
+        span
+            color: #67688C
+
     .search
         input
             color: #8788AC
             padding: 10px 15px
-            border-radius: 50px
+            border-radius: 5px
             border: none
             font-style: italic
             box-shadow: 4px 4px 4px #BCCCEC
@@ -32,25 +43,37 @@
         span
             color: #8788AC
 
+
     button
         background-color: #8487EE
         box-shadow: 4px 4px 4px #BCCCEC
         border: none
         border-radius: 5px
-        padding: 10px
+        padding: 8px 15px
         font-weight: bold
         color: #FFF
 
         i
             font-weight: bold
 
-        .tooltip
-            visibility: hidden
-            position: absolute
-            background-color: #BCCCEC
-            top: 100%
-            padding: 5px
-            border-radius: 5px 
+    .header
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 100%
+        button
+            background-color: #8487EE
+            box-shadow: 4px 4px 4px #BCCCEC
+            border: none
+            border-radius: 5px
+            padding: 8px 15px
+            font-weight: bold
+            color: #FFF
+
+            i
+                font-weight: bold
+
+
 
 
 
@@ -109,3 +132,16 @@
 
                 i
                     font-weight: bold
+
+
+@media (max-width: 360px)
+    .container
+        .header
+            display: flex
+            width: 100%
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+
+        .search
+            margin-top: 5%

@@ -1,7 +1,13 @@
-
 <div class="container space-between">
-    <div class="search">
-        <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
+    <div class="header">
+        <button (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
+        <app-date></app-date>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card ">
+        <span *ngIf="userSchools">Escolas cadastradas no Sistema {{ userSchools.length }}</span>
     </div>
 </div>
 
@@ -9,10 +15,10 @@
     <button type="button" (click)="toggleCreate()">
         Criar nova
         <i class="uil uil-plus"></i>
-        <div class="tooltip">
-            <span>Permite criar uma nova Escola</span>
-        </div>
     </button>
+    <div class="search">
+        <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
+    </div>
 </div>
 
 <ng-container *ngIf="createSchool">
@@ -36,6 +42,10 @@
         </form>
     </div>
 </ng-container>
+
+
+
+
 
 <ng-container *ngIf="userSchools.length > 0 else noContent">
     <div class="container-grid">

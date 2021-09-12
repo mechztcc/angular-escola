@@ -1,1 +1,20 @@
-<p>home works!</p>
+<ng-container *ngIf="classrooms.length > 0 else noContent">
+    <div class="container space-between">
+        <button (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
+        <app-date></app-date>
+    </div>
+    <div class="container-grid">
+        <div *ngFor="let classroom of classrooms">
+           <app-card-select-classroom [classroom]="classroom"></app-card-select-classroom>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #noContent>
+    <div class="container">
+        <div class="no-data">
+            <span>Nenhuma Turma Encontrada.</span>
+            <img src="assets/no-data.svg" alt="">
+        </div>
+    </div>
+</ng-template>

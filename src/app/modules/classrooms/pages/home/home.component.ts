@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   classrooms$: Observable<any>;
   classrooms: IClassroom[] = [];
 
-  constructor(private store: Store<AppState>, private classroomsService: ClassroomsService) { }
+  constructor(private store: Store<AppState>, private classroomsService: ClassroomsService, private router: Router) { }
 
   ngOnInit(): void {
     this.listStore();
@@ -27,8 +28,6 @@ export class HomeComponent implements OnInit {
       (data) => {
         if(data.length > 0) {
           this.classrooms = data;
-          console.log(this.classrooms);
-          
         } else {
           this.listApi();
         }
@@ -37,8 +36,15 @@ export class HomeComponent implements OnInit {
   }
 
   listApi() {
-    
-    
+    this.classroomsService.listAllByUserId()
+      .subscribe((data: IClassroom[]) => {
+        this.classrooms = data;
+      })
+  }
+
+
+  navigate() {
+    this.router.navigate([''])
   }
 
 }

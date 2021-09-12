@@ -7,6 +7,7 @@ import { CardSelectSchoolComponent } from './components/card-select-school/card-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchoolHomeComponent } from './pages/school-home/school-home.component';
 import { CardClassroomComponent } from './components/card-classroom/card-classroom.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CardClassroomComponent } from './components/card-classroom/card-classro
     CommonModule,
     SchoolsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class SchoolsModule { }

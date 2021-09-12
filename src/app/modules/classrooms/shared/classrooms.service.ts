@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IClassroom } from './interfaces/classroom';
 
 @Injectable({
   providedIn: 'root'
@@ -10,5 +12,7 @@ export class ClassroomsService {
 
   constructor(private http: HttpClient) { }
 
-  
+  listAllByUserId(): Observable<IClassroom[]> {
+    return this.http.get<IClassroom[]>(`${this.url}/classrooms`);
+  }
 }
