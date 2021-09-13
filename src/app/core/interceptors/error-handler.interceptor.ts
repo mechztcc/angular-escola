@@ -26,6 +26,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if(error.status == 401) {
           this.toastrService.error('Email e/ou Senha Incorretos', 'Falha na operação');
+        } if(error.status == 400) {
+          // this.toastrService.warning(`${error.error.message}`, 'Falha na operação');
         } else {
           this.toastrService.error('Erro desconhecido', 'Falha na operação');
         }

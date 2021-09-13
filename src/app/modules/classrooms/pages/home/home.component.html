@@ -1,4 +1,4 @@
-<ng-container *ngIf="classrooms.length > 0 else noContent">
+<ng-container>
     <div class="container space-between">
         <button (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
         <app-date></app-date>
@@ -45,7 +45,7 @@
         </div>
     </ng-container>
 
-    <div class="container-grid">
+    <div class="container-grid" *ngIf="classrooms.length > 0 else noContent">
         <div *ngFor="let classroom of classrooms">
            <app-card-select-classroom [classroom]="classroom"></app-card-select-classroom>
         </div>
