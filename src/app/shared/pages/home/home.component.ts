@@ -13,6 +13,8 @@ import { SchoolNew } from 'src/app/modules/schools/shared/store/schools.actions'
 import { Student } from 'src/app/modules/students/shared/interfaces/student';
 import { StudentAll, StudentNew } from 'src/app/modules/students/shared/store/students.actions';
 import { ITeacher } from 'src/app/modules/teachers/shared/interfaces/teacher';
+import { TeacherNew } from 'src/app/modules/teachers/shared/store/teachers.actions';
+import { TeachersService } from 'src/app/modules/teachers/shared/teachers.service';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   schools$: Observable<any>;
   classrooms$: Observable<any>;
+  teachers$: Observable<any>;
 
   loadingSchools: boolean = false;
   loadingClassrooms: boolean = false;
@@ -38,12 +41,13 @@ export class HomeComponent implements OnInit {
   loadingTeachers: boolean = false;
 
 
-  constructor(private router: Router, private schoolsService: SchoolsService, private classroomsService: ClassroomsService,private store: Store<AppState>) { }
+  constructor(private teachersService: TeachersService, private router: Router, private schoolsService: SchoolsService, private classroomsService: ClassroomsService,private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.date = new Date();
     this.listSchoolsStore();
     this.listClassroomStore();
+    this.listTeacherStore();
   }
 
   // ******* INIT METHODS **********
@@ -101,6 +105,30 @@ export class HomeComponent implements OnInit {
   }
 
 
+  listTeacherStore() {
+    this.schools$ = this.store.pipe(select('teacher'));
+    this.schools$.subscribe(
+      (data) => {
+        if(data.length > 0) {
+          this.teachers = data;
+        } else {
+          this.listTeacherApi();
+        }
+      }
+    )
+  }
+
+  listTeacherApi() {
+    this.loadingTeachers = true;
+    this.teachersService.listAllByUserId()
+      .subscribe((data: ITeacher[]) => {
+        data.forEach((teacher) => {
+          this.store.dispatch(new TeacherNew({ teacher: teacher }));
+        })
+      }).add(() => {
+        this.loadingTeachers = false;
+      })
+  }
 
 
   // ********** SUPPORT METHODS **********
