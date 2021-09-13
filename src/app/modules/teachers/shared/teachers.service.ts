@@ -9,7 +9,7 @@ import { ITeacher } from './interfaces/teacher';
 export class TeachersService {
 
 
-  url: string = 'http://localhost:3000'
+  url: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 

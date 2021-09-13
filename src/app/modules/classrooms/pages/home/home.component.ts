@@ -58,11 +58,14 @@ export class HomeComponent implements OnInit {
   }
 
   listApi() {
+    this.loading = true
     this.classroomsService.listAllByUserId()
       .subscribe((data: IClassroom[]) => {
         data.forEach((classroom) => {
           this.store.dispatch(new ClassroomNew({ classroom: classroom }));
         })
+      }).add(() => {
+        this.loading = false;
       })
   }
 

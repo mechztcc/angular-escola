@@ -9,6 +9,8 @@ export function reducer(state = initialState, action: fromTeacherActions.Teacher
     switch (action.type) {
         case fromTeacherActions.TeacherActionTypes.TEACHERS_NEW:
             state = state.concat(action.payload.teacher);
+            // console.log(state);
+            
             return state;
             break;
             

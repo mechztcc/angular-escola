@@ -16,7 +16,6 @@ export class HandlerTokenInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('token');
     if(token) {
       request = request.clone({ headers: request.headers.set('authorization', 'Bearer ' + token)});
-      console.log(request.headers);
     }
     return next.handle(request);
   }
