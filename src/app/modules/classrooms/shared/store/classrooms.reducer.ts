@@ -8,7 +8,7 @@ export const initialState: IClassroom[] = [];
 export function reducer(state = initialState, action: fromClassroomActions.ClassroomActions) {
     switch (action.type) {
         case fromClassroomActions.ClassroomActionTypes.CLASSROOM_NEW:
-            state = [...state, action.payload.classroom]
+            state = state.concat(action.payload.classroom);
             return state;
             break;
             

@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
 
   loadingSchools: boolean = false;
   loadingClassrooms: boolean = false;
+  loadingStudents: boolean = false;
+  loadingTeachers: boolean = false;
 
 
   constructor(private router: Router, private schoolsService: SchoolsService, private classroomsService: ClassroomsService,private store: Store<AppState>) { }
@@ -60,7 +62,7 @@ export class HomeComponent implements OnInit {
   }
 
   listSchoolsApi() {
-    this.loadingSchools = false;
+    this.loadingSchools = true;
      this.schoolsService.listAllSchoolsByUserId()
       .subscribe((data: ISchool[]) => {
         data.forEach((school) => {
@@ -68,7 +70,7 @@ export class HomeComponent implements OnInit {
         })
         this.schools = data;        
       }).add(() => {
-        this.loadingSchools = true;
+        this.loadingSchools = false;
       })
   }
 

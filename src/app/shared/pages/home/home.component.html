@@ -13,18 +13,30 @@
 <div class="container-grid">
     <div class="card shadow" (click)="navegate(1)">
         <span>Escolas</span>
-        <small>{{ schools.length }}</small>
+        <small *ngIf="!loadingSchools">{{ schools.length }}</small>
+        <small *ngIf="loadingSchools">
+            <i class="uil uil-spinner-alt"></i>
+        </small>
     </div>
     <div class="card shadow" (click)="navegate(2)">
         <span>Turmas</span>
-        <small>{{ classrooms.length}}</small>
+        <small *ngIf="!loadingClassrooms">{{ classrooms.length}}</small>
+        <small *ngIf="loadingClassrooms">
+            <i class="uil uil-spinner-alt"></i>
+        </small>
     </div>
     <div class="card shadow" (click)="navegate(3)">
         <span>Alunos</span>
-        <small>{{ students.length }}</small>
+        <small *ngIf="!loadingStudents">{{ students.length }}</small>
+        <small *ngIf="loadingStudents">
+            <i class="uil uil-spinner-alt"></i>
+        </small>
     </div>
     <div class="card shadow" (click)="navegate(4)">
         <span>Professores</span>
-        <small>{{ teachers.length }}</small>
+        <small *ngIf="!loadingTeachers">{{ teachers.length }}</small>
+        <small *ngIf="loadingTeachers">
+            <i class="uil uil-spinner-alt"></i>
+        </small>
     </div>
 </div>
