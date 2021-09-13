@@ -15,4 +15,9 @@ export class ClassroomsService {
   listAllByUserId(): Observable<IClassroom[]> {
     return this.http.get<IClassroom[]>(`${this.url}/classrooms`);
   }
+
+  create(classroom: IClassroom): Observable<IClassroom> {
+    return this.http.post<IClassroom>(`${this.url}/classrooms`, classroom);
+  }
+
 }

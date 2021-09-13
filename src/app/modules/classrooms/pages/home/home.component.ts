@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
 import { ClassroomsService } from '../../shared/classrooms.service';
 import { IClassroom } from '../../shared/interfaces/classroom';
+import { ClassroomNew } from '../../shared/store/classrooms.actions';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +25,11 @@ export class HomeComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor(private store: Store<AppState>, private classroomsService: ClassroomsService, private router: Router, private formBuild: FormBuilder) { }
+  classroom: IClassroom;
+
+  errors: boolean = false;
+
+  constructor(private toastrService: ToastrService, private store: Store<AppState>, private classroomsService: ClassroomsService, private router: Router, private formBuild: FormBuilder) { }
 
   ngOnInit(): void {
     this.listStore();
@@ -43,8 +49,8 @@ export class HomeComponent implements OnInit {
     this.classrooms$.subscribe(
       (data) => {
         if(data.length > 0) {
-          this.classrooms = data;
-        } else {
+          this.classrooms = data;    
+        } else { 
           this.listApi();
         }
       }
@@ -54,11 +60,38 @@ export class HomeComponent implements OnInit {
   listApi() {
     this.classroomsService.listAllByUserId()
       .subscribe((data: IClassroom[]) => {
-        this.classrooms = data;
+        data.forEach((classroom) => {
+          this.store.dispatch(new ClassroomNew({ classroom: classroom }));
+        })
       })
   }
 
-  validateForm() {}
+  prepareNewClassroom(event: any) {
+    this.classroom = { name: this.form.controls.name.value }
+    this.errors = false;
+    
+  }
+
+  newClassroom() {
+    this.loading = true;
+    this.classroomsService.create(this.classroom)
+      .subscribe((data: IClassroom) => {
+        this.toastrService.success('Turma criada com sucesso!', 'Sucesso!')
+        this.store.dispatch(new ClassroomNew({ classroom: data }));
+        
+      }).add(() => {
+        this.loading = false;
+      })
+  }
+
+  validateForm() {
+    if(this.form.invalid) {
+      this.errors = true;
+      this.toastrService.error('Formulário incorreto!', 'Falha na operação');
+    } else {
+      this.newClassroom();
+    }
+  }
 
   filter(name: any) {
     console.log(name);

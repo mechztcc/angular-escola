@@ -25,9 +25,12 @@
             <form [formGroup]="form" (ngSubmit)="validateForm()">
                 <label for="name">Cadastrar nova turma</label>
                 <div class="input-prepend">
-                    <i class="uil uil-graduation-cap"></i>
-                    <input type="text" placeholder="Nome da turma" formControlName="name">
+                    <i *ngIf="form.controls.name.pristine && !errors" class="uil uil-plus-square"></i>
+                    <i *ngIf="(!errors && !form.controls.name.invalid)" class="uil uil-check"></i>
+                    <i *ngIf="(errors) || (form.controls.name.invalid && !form.controls.name.pristine)" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+                    <input type="text" placeholder="Nome da turma" formControlName="name" (keyup)="prepareNewClassroom($event)">
                 </div>
+                <small *ngIf="errors">Campo Inválido!</small>
                 <div class="buttons">
                     <button *ngIf="!loading">
                         Criar

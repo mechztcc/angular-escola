@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
+import { ClassroomsService } from 'src/app/modules/classrooms/shared/classrooms.service';
 import { IClassroom } from 'src/app/modules/classrooms/shared/interfaces/classroom';
 import { ClassroomNew } from 'src/app/modules/classrooms/shared/store/classrooms.actions';
 import { ISchool } from 'src/app/modules/schools/shared/interfaces/school';
@@ -29,61 +30,78 @@ export class HomeComponent implements OnInit {
   date: Date;
 
   schools$: Observable<any>;
+  classrooms$: Observable<any>;
+
+  loadingSchools: boolean = false;
+  loadingClassrooms: boolean = false;
 
 
-  constructor(private router: Router, private schoolsService: SchoolsService, private store: Store<AppState>) { }
+  constructor(private router: Router, private schoolsService: SchoolsService, private classroomsService: ClassroomsService,private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.date = new Date();
-    // this.listStoreSchools();
-    this.listSchools();
+    this.listSchoolsStore();
+    this.listClassroomStore();
   }
 
-  listStoreSchools() {
+  // ******* INIT METHODS **********
+
+  listSchoolsStore() {
     this.schools$ = this.store.pipe(select('school'));
     this.schools$.subscribe(
       (data) => {
         if(data.length > 0) {
-          this.schools = data;
+          this.schools = data;   
         } else {
-          this.listSchools();
+          this.listSchoolsApi();
         }
       }
     )
   }
 
-
-  listSchools() {
-    this.schoolsService.listAllByUserId()
-      .subscribe((data: IUserSchools) => {
-        this.schools = data.school;
-        this.email = data.email;
-        data.school.forEach((escola, index) => {
-          this.store.dispatch(new SchoolNew({ school: escola }))
-          if(escola.teachers.length > 0) {
-            escola.teachers.forEach((teacher, index) => {
-              this.teachers.push(teacher);
-            })
-          }
-      
-          if(escola.classrooms.length > 0) {
-            escola.classrooms.forEach((classroom, index) => {
-              this.classrooms.push(classroom);
-              this.store.dispatch(new ClassroomNew({ classroom: classroom }))
-              
-              if(classroom.students.length > 0) {
-                classroom.students.forEach((student, index) => {
-                  this.store.dispatch(new StudentNew({ student: student }))
-                  this.students.push(student);
-
-                  
-                })
-              }
-            })
-          }
+  listSchoolsApi() {
+    this.loadingSchools = false;
+     this.schoolsService.listAllSchoolsByUserId()
+      .subscribe((data: ISchool[]) => {
+        data.forEach((school) => {
+          this.store.dispatch(new SchoolNew({ school: school })) 
         })
+        this.schools = data;        
+      }).add(() => {
+        this.loadingSchools = true;
       })
-    }
+  }
+
+
+  listClassroomStore() {
+    this.classrooms$ = this.store.pipe(select('classroom'));
+    this.classrooms$.subscribe(
+      (data) => {
+        if(data.length > 0) {
+          this.classrooms = data;
+        } else {
+          this.listClassroomApi();
+        }
+      }
+    )
+  }
+
+  listClassroomApi() {
+    this.loadingClassrooms = true;
+    this.classroomsService.listAllByUserId()
+      .subscribe((data: IClassroom[]) => {
+        data.forEach((classroom) => {
+          this.store.dispatch(new ClassroomNew({ classroom: classroom }));
+        })
+      }).add(() => {
+        this.loadingClassrooms = false;
+      })
+  }
+
+
+
+
+  // ********** SUPPORT METHODS **********
 
   navegate(value: number) {
     switch (value) {

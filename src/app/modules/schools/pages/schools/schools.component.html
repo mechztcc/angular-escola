@@ -27,7 +27,7 @@
             <label for="name">Cadastrar nova escola</label>
             <div class="input-prepend">
                 <i class="uil uil-graduation-cap"></i>
-                <input type="text" placeholder="Nome da escola" formControlName="name">
+                <input type="text" placeholder="Nome da escola" formControlName="name" (keyup)="prepareNewSchool($event)">
             </div>
             <div class="buttons">
                 <button *ngIf="!loading">

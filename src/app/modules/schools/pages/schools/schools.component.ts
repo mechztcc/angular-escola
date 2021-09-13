@@ -10,6 +10,7 @@ import { ICreateScholl } from '../../shared/interfaces/create-school';
 import { ISchool } from '../../shared/interfaces/school';
 import { IUserSchools } from '../../shared/interfaces/user-schools';
 import { SchoolsService } from '../../shared/schools.service';
+import { SchoolNew } from '../../shared/store/schools.actions';
 
 @Component({
   selector: 'app-schools',
@@ -28,7 +29,6 @@ export class SchoolsComponent implements OnInit, OnChanges {
 
   schools$: Observable<any>;
 
-  // date: string = Date.now().toString();
 
   constructor(private router: Router, private schoolsService: SchoolsService, private spinner: NgxSpinnerService, private formBuilder: FormBuilder, private toastr: ToastrService, private store: Store<AppState>) { }
   
@@ -47,7 +47,8 @@ export class SchoolsComponent implements OnInit, OnChanges {
     this.schools$.subscribe(
       (data) => {
         if(data.length > 0) {
-          this.userSchools = data;    
+          this.userSchools = data;   
+           
         } else {
           this.listSchools();
         }
@@ -56,7 +57,7 @@ export class SchoolsComponent implements OnInit, OnChanges {
   }
 
   filter(name: any) {
-    console.log(name);
+
     
   }
 
@@ -68,9 +69,11 @@ export class SchoolsComponent implements OnInit, OnChanges {
 
   listSchools() {
     this.spinner.show();
-    this.schoolsService.listAllByUserId()
-      .subscribe((data: IUserSchools) => {
-        this.userSchools = data.school;
+    this.schoolsService.listAllSchoolsByUserId()
+      .subscribe((data: ISchool[]) => {
+        data.forEach((school) => {
+          this.store.dispatch(new SchoolNew({ school: school })) 
+        })
       }).add(() => {
         this.spinner.hide();
       })
@@ -84,19 +87,21 @@ export class SchoolsComponent implements OnInit, OnChanges {
     if(this.form.invalid) {
       this.toastr.warning('Nome Inválido', 'Falha ao criar escola');
     } else {
-      this.salvar();
+      this.create();
     }
   }
 
-  salvar() {
+  prepareNewSchool(event: any) {
     this.school = { name: this.form.controls.name.value }
+  }
+
+  create() {
     this.loading = true;
-    this.schoolsService.creteSchool(this.school)
-      .subscribe((data: any) => {
-        this.toastr.success('Escola criada com sucesso!', 'Sucesso!');
+    this.schoolsService.createSchool(this.school)
+      .subscribe((data: ISchool) => {
+        this.store.dispatch(new SchoolNew({ school: data })) 
       }).add(() => {
         this.loading = false;
-        this.atualizar();
       })
   }
 
