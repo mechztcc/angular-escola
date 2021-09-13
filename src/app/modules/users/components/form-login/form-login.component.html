@@ -9,14 +9,14 @@
         <div class="input-group">
           <input type="text" placeholder="E-mail" formControlName="email" [ngClass]="{ 'error' : errors}">
           <i *ngIf="(!errors && !form.controls.email.invalid)" class="uil uil-check"></i>
-          <i *ngIf="errors" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+          <i *ngIf="(errors) || (form.controls.email.invalid && !form.controls.email.pristine)" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
           <small *ngIf="errors">Campo Inválido!</small>
         </div>
         
         <div class="input-group">
           <input type="password" placeholder="Senha" formControlName="password" [ngClass]="{ 'error' : errors}">
           <i *ngIf="(!errors && !form.controls.password.invalid)" class="uil uil-check"></i>
-          <i *ngIf="errors" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
+          <i *ngIf="(errors) || (form.controls.password.invalid && !form.controls.password.pristine)" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
           <small *ngIf="errors">Campo Inválido!</small>
         </div>
 
