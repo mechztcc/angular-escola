@@ -10,8 +10,17 @@
 
 <div class="profile" *ngIf="opened">
   <ul>
-    <li [routerLink]="['/users/login']">Sair</li>
-    <li [routerLink]="['']">Home</li>
-    <li>Configurações</li>
+    <li [routerLink]="['']">
+      <i class="uil uil-estate"></i>
+      Home
+    </li>
+    <li>
+      <i class="uil uil-cog"></i>
+      Configurações
+    </li>
+    <li [routerLink]="['/users/login']">
+      <i class="uil uil-power"></i>
+      Sair
+    </li>
   </ul>
 </div>

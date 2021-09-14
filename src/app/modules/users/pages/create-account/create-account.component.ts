@@ -10,6 +10,7 @@ export class CreateAccountComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
 }
