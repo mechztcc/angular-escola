@@ -12,22 +12,36 @@
 
         span
             color: #67688C
-    button
-        background-color: #8487EE
-        box-shadow: 4px 4px 4px #BCCCEC
-        border: none
-        border-radius: 5px
-        padding: 8px 15px
-        font-weight: bold
-        color: #FFF
-
-        i
+    .header
+        display: flex
+        width: 100%
+        button
+            background-color: #8487EE
+            box-shadow: 4px 4px 4px #BCCCEC
+            border: none
+            border-radius: 5px
+            padding: 8px 15px
             font-weight: bold
-            
+            color: #FFF
+
+            i
+                font-weight: bold
+                
 
     button:hover
         background-color: #8488eed5
 
+    button
+            background-color: #8487EE
+            box-shadow: 4px 4px 4px #BCCCEC
+            border: none
+            border-radius: 5px
+            padding: 8px 15px
+            font-weight: bold
+            color: #FFF
+
+            i
+                font-weight: bold
     .search
         input
             color: #8788AC
@@ -108,3 +122,14 @@
 
                 i
                     font-weight: bold
+
+
+@media  (max-width: 360px)
+    .container
+        .header
+            width: 100%
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+            

@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
     this.loading = true
     this.classroomsService.listAllByUserId()
       .subscribe((data: IClassroom[]) => {
+        console.log(data);
         data.forEach((classroom) => {
           this.store.dispatch(new ClassroomNew({ classroom: classroom }));
         })
@@ -89,7 +90,7 @@ export class HomeComponent implements OnInit {
   }
 
   setSchool() {
-    this.classroom = { ...this.classroom, schooldId: this.form.controls.school.value }
+    this.classroom = { ...this.classroom, schoolId: this.form.controls.school.value }
     console.log(this.classroom); 
   }
 

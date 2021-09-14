@@ -6,5 +6,5 @@ export interface IClassroom {
     created_at?: string;
     updated_at?: string;
     students?: Student[];
-    schooldId?: number;
+    schoolId?: number;
 }
