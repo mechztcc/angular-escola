@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   schools: ISchool[] = [];
 
-  createClassroom: boolean = true;
+  createClassroom: boolean = false;
 
   form: FormGroup;
 

@@ -44,9 +44,6 @@
 </ng-container>
 
 
-
-
-
 <ng-container *ngIf="userSchools.length > 0 else noContent">
     <div class="container-grid">
         <app-card-select-school *ngFor="let school of userSchools" [school]="school"></app-card-select-school>
@@ -58,7 +55,7 @@
     <div class="container">
         <div class="no-data">
             <span>Nenhuma Escola Encontrada.</span>
-            <img src="assets/no-data.svg" alt="">
+            <img src="assets/school.svg" alt="">
         </div>
     </div>
 </ng-template>

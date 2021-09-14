@@ -1,5 +1,74 @@
-<ng-container *ngIf="teachers.length > 0">
+<div class="container">
+    <div class="header space-between">
+        <button (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
+        <app-date></app-date>
+    </div>
+</div>
+
+<div class="container space-between">
+    <button type="button" (click)="toggleCreate()">
+        Cadastrar Novo
+    </button>
+    <div class="search">
+        <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
+    </div>
+</div>
+
+<ng-container *ngIf="createTeacher">
+    <div class="container-column">
+        <form [formGroup]="form" (ngSubmit)="validateForm()">
+            <label for="name">Cadastrar novo professor</label>
+            <div class="input-prepend">
+                <i class="uil uil-graduation-cap"></i>
+                <input type="text" placeholder="Nome do professor" formControlName="name" (keyup)="setTeacherName">
+            </div>
+            <div class="input-prepend">
+                <i class="uil uil-diary"></i>
+                <input type="text" placeholder="Disciplina" formControlName="subject" (keyup)="setTeacherName">
+            </div>
+            <div class="input-prepend">
+                <i class="uil uil-calendar-alt"></i>
+                <input type="text" placeholder="Data de pagamento" formControlName="paymentDay" (keyup)="setTeacherName">
+            </div>
+            <div class="input-prepend">
+                <i class="uil uil-bell-school"></i>
+                <select name="" id="" *ngIf="schools.length > 0">
+                    <option value=""selected> -- Selecione --</option>
+                    <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button *ngIf="!loading">
+                    Criar
+                </button>
+                <button *ngIf="loading">
+                    Processando
+                    <i class="uil uil-sync"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="teachers.length > 0 else noContent">
+    <div class="container">
+        <div class="card ">
+            <span >Professores cadastradas nessa Escola {{ teachers.length }}</span>
+        </div>
+    </div>
     <div class="container">
         <app-table></app-table>
     </div>
 </ng-container>
+
+
+
+<ng-template #noContent>
+    <div class="container">
+        <div class="no-data">
+            <span>Nenhum Professor foi encontrado.</span>
+            <img src="assets/teacher.svg" alt="">
+        </div>
+    </div>
+</ng-template>
