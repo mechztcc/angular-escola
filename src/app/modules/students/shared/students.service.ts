@@ -13,6 +13,6 @@ export class StudentsService {
   constructor(private http: HttpClient) { }
 
   listAllByUserId(): Observable<any> {
-    return this.http.get<any>(`${this.url}/users/schools`);
+    return this.http.get<any>(`${this.url}/students`);
   }
 }
