@@ -28,9 +28,22 @@
                     <i *ngIf="form.controls.name.pristine && !errors" class="uil uil-plus-square"></i>
                     <i *ngIf="(!errors && !form.controls.name.invalid)" class="uil uil-check"></i>
                     <i *ngIf="(errors) || (form.controls.name.invalid && !form.controls.name.pristine)" class="uil uil-times-circle" style="top: 15%; color: #ee84d3;"></i>
-                    <input type="text" placeholder="Nome da turma" formControlName="name" (keyup)="prepareNewClassroom($event)">
+                    <input type="text" placeholder="Nome da turma" formControlName="name" (keyup)="prepareNewClassroom()">
                 </div>
                 <small *ngIf="errors">Campo Inválido!</small>
+                <label for="school">Selecione a Escola</label>
+                <div class="input-prepend">
+                    <select name="" id="" formControlName="school" *ngIf="schools.length > 0" (change)="setSchool()">
+                        <option value="" selected>--Selecione --</option>
+                        <option *ngFor="let school of schools" value="{{ school.id }}">{{ school.name }}</option>
+                    </select>
+                    <ng-container *ngIf="schools.length == 0">
+                        <span>Carregando <i class="uil uil-spinner-alt"></i></span> 
+                    </ng-container>
+
+                </div>
+                <small *ngIf="errors">Campo Inválido!</small>
+
                 <div class="buttons">
                     <button *ngIf="!loading">
                         Criar
