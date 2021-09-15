@@ -1,3 +1,54 @@
-<div class="container-grid">
-    <span *ngFor="let student of students">{{ student.name }}</span>
+<div class="container">
+    <div class="header space-between">
+        <button (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
+        <app-date></app-date>
+    </div>
 </div>
+
+<div class="container">
+    <div class="card">Alunos cadastrados no Sistema {{ students.length }}</div>
+</div>
+
+<div class="container space-between">
+    <button type="button" (click)="toggleCreate()">
+        Cadastrar
+    </button>
+    <div class="search">
+        <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
+    </div>
+</div>
+
+<ng-container *ngIf="createStudent">
+    <div class="container-column">
+        <form [formGroup]="form" (ngSubmit)="validateForm()">
+            <label for="name">Cadastrar novo Aluno</label>
+            <div class="input-prepend">
+                <i class="uil uil-graduation-cap"></i>
+                <input type="text" placeholder="Nome completo" formControlName="name" (keyup)="prepareNewStudent($event)">
+            </div>
+            <div class="input-prepend">
+                <i class="uil uil-calendar-alt"></i>
+                <input type="text" placeholder="Data de nascimento" formControlName="name">
+            </div>
+            <div class="input-prepend">
+                <i class="uil uil-calendar-alt"></i>
+                <select name="" id="">
+                    <option value="" selected>-- Selecione a  turma --</option>
+                </select>
+            </div>
+            <div class="input-prepend">
+                <i class="uil uil-user-nurse"></i>
+                <input type="text" placeholder="Nome do responsável" formControlName="name">
+            </div>
+            <div class="buttons">
+                <button *ngIf="!loading">
+                    Criar
+                </button>
+                <button *ngIf="loading">
+                    Processando
+                    <i class="uil uil-sync"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-container>

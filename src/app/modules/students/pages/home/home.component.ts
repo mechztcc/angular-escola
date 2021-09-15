@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
@@ -19,10 +20,29 @@ export class HomeComponent implements OnInit {
 
   students: Student[] = [];
 
-  constructor(private  studentsService: StudentsService, private store: Store<AppState>) { }
+  createStudent: boolean = true;
+
+  form: FormGroup;
+  errors: boolean = false;
+
+  constructor(private  studentsService: StudentsService, private store: Store<AppState>, private formBuild: FormBuilder) { }
 
   ngOnInit(): void {
     this.listStore();
+    this.initForm();
+  }
+
+  initForm() {
+    this.form = this.formBuild.group({
+      name: ['', Validators.compose([
+        Validators.required, Validators.minLength(5)
+      ])],
+      birthDay: ['', Validators.compose([
+        Validators.required, Validators.minLength(10)
+      ])],
+      classroom: ['', ],
+      responsible: ['']
+    })
   }
 
   listStore() {
@@ -49,5 +69,17 @@ export class HomeComponent implements OnInit {
          this.loading = false;
     })
   }
+
+  prepareNewStudent(e: any) {}
+
+  validateForm() {}
+
+  navigate() {}
+
+  toggleCreate() {
+    this.createStudent = !this.createStudent;
+  }
+
+  filter(v: any) {}
 
 }
