@@ -28,18 +28,24 @@
                 <i class="uil uil-graduation-cap"></i>
                 <input type="text" placeholder="Nome do professor" formControlName="name" (keyup)="setTeacherName">
             </div>
-            <div class="input-prepend">
-                <i class="uil uil-diary"></i>
-                <input type="text" placeholder="Disciplina" formControlName="subject" (keyup)="setTeacherName">
-            </div>
+            
             <div class="input-prepend">
                 <i class="uil uil-calendar-alt"></i>
                 <input type="text" placeholder="Data de pagamento" formControlName="paymentDay" (keyup)="setTeacherName">
             </div>
+
+            <div class="input-prepend">
+                <i class="uil uil-book-open"></i>
+                <select name="" id="" *ngIf="schools.length > 0">
+                    <option value=""selected> -- Selecione a disciplina--</option>
+                    <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
+                </select>
+            </div>
+
             <div class="input-prepend">
                 <i class="uil uil-bell-school"></i>
                 <select name="" id="" *ngIf="schools.length > 0">
-                    <option value=""selected> -- Selecione --</option>
+                    <option value=""selected> -- Selecione a escola--</option>
                     <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
                 </select>
             </div>
@@ -58,11 +64,6 @@
 </ng-container>
 
 <ng-container *ngIf="teachers.length > 0 else noContent">
-    <div class="container">
-        <div class="card ">
-            <span >Professores cadastradas nessa Escola {{ teachers.length }}</span>
-        </div>
-    </div>
     <div class="container">
         <app-table></app-table>
     </div>

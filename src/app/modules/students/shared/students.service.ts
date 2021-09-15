@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Student } from './interfaces/student';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class StudentsService {
 
   constructor(private http: HttpClient) { }
 
-  listAllByUserId(): Observable<any> {
-    return this.http.get<any>(`${this.url}/students`);
+  listAllByUserId(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.url}/students`);
   }
 }
