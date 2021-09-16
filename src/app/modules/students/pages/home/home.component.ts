@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   students: Student[] = [];
   classrooms: IClassroom[] = [];
 
-  createStudent: boolean = true;
+  createStudent: boolean = false;
 
   form: FormGroup;
   errors: boolean = false;
@@ -157,12 +157,11 @@ export class HomeComponent implements OnInit {
       classroomId: this.form.controls.classroom.value,
       responsibleId: data.id
     }
-    console.log(this.student);
-    
     this.loadingSavement = true;
     this.studentsService.createStudent(this.student)
-      .subscribe((data: any) => {
-        console.log(data);
+      .subscribe((data: Student) => {
+        this.store.dispatch(new StudentNew({ student: data }));
+        this.toastrService.success('Estudante cadastrado com sucesso!', 'Sucesso.');
       }).add(() => {
         this.loadingSavement = false;
       })
