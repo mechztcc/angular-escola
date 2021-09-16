@@ -6,7 +6,9 @@
 </div>
 
 <div class="container">
-    <div class="card">Alunos cadastrados no Sistema {{ students.length }}</div>
+    <div class="card">
+        <span>Alunos cadastrados no Sistema {{ students.length }}</span>
+    </div>
 </div>
 
 <div class="container space-between">
@@ -70,6 +72,6 @@
     </div>
 </ng-container>
 
-<div class="container" style="justify-content: center;">
-    <app-table-list [students]="students"></app-table-list>
+<div class="container" style="justify-content: center;overflow-x: scroll;">
+    <app-table-list  [students]="students"></app-table-list>
 </div>
