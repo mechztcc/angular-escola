@@ -1,7 +1,9 @@
 export interface Student {
-    id: number;
+    id?: number;
     name: string;
     birthDay: string;
-    created_at: string;
-    updated_at: string;
+    classroomId?: number;
+    responsibleId?: number;
+    created_at?: string;
+    updated_at?: string;
 }

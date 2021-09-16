@@ -16,4 +16,8 @@ export class StudentsService {
   listAllByUserId(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.url}/students`);
   }
+
+  createStudent(student: Student): Observable<any> {
+    return this.http.post<any>(`${this.url}/students`, student);
+  }
 }

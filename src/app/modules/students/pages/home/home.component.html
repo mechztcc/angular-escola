@@ -24,24 +24,41 @@
             <label for="name">Cadastrar novo Aluno</label>
             <div class="input-prepend">
                 <i class="uil uil-graduation-cap"></i>
-                <input type="text" placeholder="Nome completo" formControlName="name" (keyup)="prepareNewStudent($event)">
+                <input type="text" placeholder="Nome completo" formControlName="name">
             </div>
             <div class="input-prepend">
                 <i class="uil uil-calendar-alt"></i>
-                <input type="text" placeholder="Data de nascimento" formControlName="name">
+                <input type="text" placeholder="Data de nascimento" formControlName="birthDay">
             </div>
             <div class="input-prepend">
                 <i class="uil uil-calendar-alt"></i>
-                <select name="" id="">
+                <select name="" id="" (change)="setClassroom($event)">
                     <option value="" selected>-- Selecione a  turma --</option>
+                    <option *ngFor="let classroom of classrooms" value="{{ classroom.id }}">{{ classroom.name }}</option>
                 </select>
             </div>
             <div class="input-prepend">
                 <i class="uil uil-user-nurse"></i>
-                <input type="text" placeholder="Nome do responsável" formControlName="name">
+                <input type="text" placeholder="Nome do responsável" formControlName="responsibleName">
             </div>
+
+            <div class="input-prepend">
+                <i class="uil uil-user-nurse"></i>
+                <input type="text" placeholder="E-mail do responsável" formControlName="email">
+            </div>
+
+            <div class="input-prepend">
+                <i class="uil uil-user-nurse"></i>
+                <input type="text" placeholder="Telefone" formControlName="phone">
+            </div>
+
+            <div class="input-prepend">
+                <i class="uil uil-user-nurse"></i>
+                <input type="text" placeholder="Data de pagamento" formControlName="payment">
+            </div>
+
             <div class="buttons">
-                <button *ngIf="!loading">
+                <button *ngIf="!loading" type="submit">
                     Criar
                 </button>
                 <button *ngIf="loading">
@@ -52,3 +69,7 @@
         </form>
     </div>
 </ng-container>
+
+<div class="container-grid">
+    <span *ngFor="let student of students"> {{ student.name }}</span>
+</div>
