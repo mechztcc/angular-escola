@@ -18,14 +18,15 @@
 
 <ng-container *ngIf="createClassroom">
     <div class="container">
-        <form>
+        <form [formGroup]="form" (ngSubmit)="validateClassroom()">
             <h4>Cadastrar nova turma</h4>
             <div class="input-prepend">
                 <i class="uil uil-letter-english-a"></i>
-                <input type="text" placeholder="Nome da turma">
+                <input type="text" placeholder="Nome da turma" formControlName="name"> 
             </div>
             <div class="buttons">
-                <button>Salvar</button>
+                <button *ngIf="!loading" type="submit">Salvar</button>
+                <button *ngIf="loading" disabled>Processando <i class="uil uil-sync"></i></button>
             </div>
         </form>
     </div>
