@@ -21,7 +21,7 @@
         <form [formGroup]="form" (ngSubmit)="validateClassroom()">
             <h4>Cadastrar nova turma</h4>
             <div class="input-prepend">
-                <i class="uil uil-letter-english-a"></i>
+                <i class="uil uil-book-medical"></i>
                 <input type="text" placeholder="Nome da turma" formControlName="name"> 
             </div>
             <div class="buttons">
@@ -45,8 +45,26 @@
 </div>
 
 <div class="buttons">
-    <button type="button" (click)="toggleCreateSubject()">Cadastrar</button>
+    <button type="button" *ngIf="!createSubject" (click)="toggleCreateSubject()">Cadastrar <i class="uil uil-angle-double-right"></i></button>
+    <button type="button" *ngIf="createSubject"  (click)="toggleCreateSubject()">Cadastrar <i class="uil uil-angle-double-down"></i></button>
 </div>
+
+<ng-container *ngIf="createSubject">
+    <div class="container">
+        <form [formGroup]="formSubject" (ngSubmit)="validateSubject()">
+            <h4>Cadastrar nova Disciplina</h4>
+            <div class="input-prepend">
+                <i class="uil uil-subject"></i>
+                <input type="text" placeholder="Nome da Disciplina" formControlName="name"> 
+            </div>
+            <div class="buttons">
+                <button *ngIf="!loading" type="submit">Salvar</button>
+                <button *ngIf="loading" disabled>Processando <i class="uil uil-sync"></i></button>
+            </div>
+        </form>
+    </div>
+</ng-container>
+
 
 <ng-container *ngIf="subjects.length > 0 else noSubjects">
     <div class="container-grid" >

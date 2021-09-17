@@ -22,8 +22,11 @@ export class SchoolHomeComponent implements OnInit {
   classrooms: IClassroom[] = [];
   subjects: ISubject[] = [];
   classroom: IClassroom;
+  subject: ISubject;
 
   form: FormGroup;
+
+  formSubject: FormGroup;
 
   loading: boolean = false;
   loadingSubjects: boolean = false;
@@ -47,8 +50,19 @@ export class SchoolHomeComponent implements OnInit {
       name: ['', Validators.compose([
         Validators.required
       ])]
+    });
+
+    this.formSubject = this.formBuild.group({
+      name: ['', Validators.compose([
+        Validators.required
+      ])]
     })
+
+
   }
+
+
+
   // Mudar isso!!!
   listClassrooms() {
     this.loading = true;
@@ -85,6 +99,31 @@ export class SchoolHomeComponent implements OnInit {
     } else {
       this.save();
     }
+  }
+
+  validateSubject() {
+    if(this.formSubject.invalid) {
+      this.errors = true;
+      this.toastrService.warning('Campo inválido', 'Falha na operação.')
+    } else {
+      this.saveSubject();
+    }
+  }
+
+  saveSubject() {
+    this.loading = true;
+    this.subject = {
+      name: this.formSubject.controls.name.value,
+      schoolId: this.schoolId
+    }
+
+    this.subjectsService.createSubject(this.subject)
+      .subscribe((data: any) => {
+        this.toastrService.success('Disciplina cadastrada com sucesso!', 'Sucesso.');
+        this.listAllSubjectsApi();
+      }).add(() => {
+        this.loading = false;
+      })
   }
 
   save() {
