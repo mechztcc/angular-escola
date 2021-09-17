@@ -13,7 +13,9 @@
 
 <div class="container space-between">
     <button type="button" (click)="toggleCreate()">
-        Cadastrar Novo
+        Cadastrar
+        <i *ngIf="!createTeacher" class="uil uil-angle-double-right"></i>
+        <i *ngIf="createTeacher" class="uil uil-angle-double-down"></i>
     </button>
     <div class="search">
         <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
@@ -26,32 +28,38 @@
             <label for="name">Cadastrar novo professor</label>
             <div class="input-prepend">
                 <i class="uil uil-graduation-cap"></i>
-                <input type="text" placeholder="Nome do professor" formControlName="name" (keyup)="setTeacherName">
+                <input type="text" placeholder="Nome do professor" formControlName="name" (keyup)="setTeacherName" formControlName="name">
             </div>
             
             <div class="input-prepend">
                 <i class="uil uil-calendar-alt"></i>
-                <input type="text" placeholder="Data de pagamento" formControlName="paymentDay" (keyup)="setTeacherName">
-            </div>
-
-            <div class="input-prepend">
-                <i class="uil uil-book-open"></i>
-                <select name="" id="" *ngIf="schools.length > 0">
-                    <option value=""selected> -- Selecione a disciplina--</option>
-                    <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
-                </select>
+                <input type="text" placeholder="Data de pagamento" formControlName="paymentDay" (keyup)="setTeacherName" formControlName="paymentDay">
             </div>
 
             <div class="input-prepend">
                 <i class="uil uil-bell-school"></i>
-                <select name="" id="" *ngIf="schools.length > 0">
+                <select name="" id="" *ngIf="schools.length > 0" (change)="setClassroom($event)" formControlName="school">
                     <option value=""selected> -- Selecione a escola--</option>
                     <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
                 </select>
             </div>
 
+            <div class="input-prepend" *ngIf="subjects.length > 0">
+                <i class="uil uil-book-open"></i>
+                <select name="" id=""  (click)="listSubjects()" formControlName="subject" (change)="setSubject($event)">
+                    <option value=""selected> -- Selecione a disciplina--</option>
+                    <option value="{{ subject.name }}" *ngFor="let subject of subjects">{{ subject.name }}</option>
+                </select>
+            </div>
+
+            <div class="input-prepend" *ngIf="subjects.length <= 0">
+                <i class="uil uil-book-alt"></i>
+                <input type="text" disabled placeholder="Primeiro selecione uma escola">
+            </div>
+       
+
             <div class="buttons">
-                <button *ngIf="!loading">
+                <button *ngIf="!loading" type="submit">
                     Criar
                 </button>
                 <button *ngIf="loading">
@@ -65,7 +73,7 @@
 
 <ng-container *ngIf="teachers.length > 0 else noContent">
     <div class="container">
-        <app-table></app-table>
+        <span *ngFor="let teacher of teachers">{{ teacher.name }}</span>
     </div>
 </ng-container>
 

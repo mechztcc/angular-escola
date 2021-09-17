@@ -14,7 +14,9 @@
 
     <div class="container space-between">
         <button type="button" (click)="toggleCreate()">
-            Criar nova
+            Cadastrar
+            <i *ngIf="!createClassroom" class="uil uil-angle-double-right"></i>
+            <i *ngIf="createClassroom" class="uil uil-angle-double-down"></i>
         </button>
         <div class="search">
             <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">

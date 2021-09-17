@@ -16,4 +16,8 @@ export class TeachersService {
   listAllByUserId(): Observable<ITeacher[]> {
     return this.http.get<ITeacher[]>(`${this.url}/teachers`);
   }
+
+  create(teacher: ITeacher): Observable<ITeacher> {
+    return this.http.post<ITeacher>(`${this.url}/teachers`, teacher);
+  }
 }
