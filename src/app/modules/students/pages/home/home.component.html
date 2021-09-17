@@ -12,8 +12,13 @@
 </div>
 
 <div class="container space-between">
-    <button type="button" (click)="toggleCreate()">
+    <button type="button" (click)="toggleCreate()" *ngIf="!createStudent">
         Cadastrar
+        <i class="uil uil-angle-double-right"></i>
+    </button>
+    <button type="button" (click)="toggleCreate()" *ngIf="createStudent">
+        Cadastrar
+        <i class="uil uil-angle-double-down"></i>
     </button>
     <div class="search">
         <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
