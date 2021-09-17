@@ -31,8 +31,8 @@ export class SchoolHomeComponent implements OnInit {
   loading: boolean = false;
   loadingSubjects: boolean = false;
 
-  createClassroom: boolean = true;
-  createSubject: boolean = true;
+  createClassroom: boolean = false;
+  createSubject: boolean = false;
   errors: boolean = false;
 
   constructor(private classroomsService: ClassroomsService, private toastrService: ToastrService, private formBuild: FormBuilder, private schoolsService: SchoolsService, private routes: ActivatedRoute, private subjectsService: SubjectsService, private router: Router) { }
