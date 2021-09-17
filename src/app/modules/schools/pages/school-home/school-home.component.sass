@@ -2,6 +2,73 @@
     display: flex
     justify-content: center
     align-items: center
+    flex-direction: column
+    margin-top: 5%
+    
+
+    .header
+        display: flex
+        justify-content: space-between
+        width: 100%
+
+        button
+            border: none
+            background-color: #8487EE
+            padding: 8px 15px
+            border-radius: 5px
+            color: #FFF
+
+    form
+        display: flex
+        flex-direction: column
+        background-color: #FFF
+        width: 100%
+        padding: 2%
+        border-radius: 5px
+        h4
+            font-weight: bold
+            color: #8487EE
+            margin: 1%
+
+
+        .input-prepend
+            display: flex
+            align-items: center
+            border: 1px solid #8788AC
+            padding: 2px
+            border-radius: 5px
+            margin-bottom: 2%
+
+            i
+                background-color: #ceceda8a
+                padding: 1%
+                color: #8487EE
+                border-radius: 3px
+            input
+                width: 50%
+                border: none
+                margin-left: 2%
+                height: 30px
+            
+            input:focus
+                outline: none
+
+        .buttons
+            display: flex
+            justify-content: flex-end
+            width: 100%
+            margin-bottom: 0
+
+            button
+                background-color: #8487EE
+                border: none
+                border-radius: 5px
+                font-weight: bold
+                color: #FFF
+
+                i
+                    font-weight: bold
+
 
 
     .card
@@ -13,28 +80,37 @@
         width: 100%
         border-radius: 5px
         margin-top: 5%
+        border-bottom: 3px solid #8487EE
 
         span
+            display: flex
+            width: 100%
+            justify-content: space-between
             color: #8788AC
+
+            
 
         .buttons
             display: flex
             justify-content: center
             width: 30%
-
-            button
-                display: flex
-                justify-content: center
-                align-items: center
-                color: #FFF
-                background-color: #8487EE
-                font-weight: bold
-                border: none
-                border-radius: 5px
-                margin: 1%
-                padding: 5%
-
-                i
-                    font-weight: bold
-                    margin-left: 1%
+            
                
+.buttons
+    width: 72%
+    margin: 0 auto
+    margin-bottom: 5%
+    margin-top: 5%
+    button
+            display: flex
+            justify-content: center
+            align-items: center
+            color: #FFF
+            background-color: #8487EE
+            font-weight: bold
+            border: none
+            border-radius: 5px
+            margin: 1%
+            padding: 8px 15px
+
+

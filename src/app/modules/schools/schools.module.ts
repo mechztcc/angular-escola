@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchoolHomeComponent } from './pages/school-home/school-home.component';
 import { CardClassroomComponent } from './components/card-classroom/card-classroom.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CardSubjectComponent } from './components/card-subject/card-subject.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SchoolsComponent,
     CardSelectSchoolComponent,
     SchoolHomeComponent,
-    CardClassroomComponent
+    CardClassroomComponent,
+    CardSubjectComponent
   ],
   imports: [
     CommonModule,

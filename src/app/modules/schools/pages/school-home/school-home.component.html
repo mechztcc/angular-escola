@@ -1,17 +1,55 @@
-<ng-container *ngIf="classrooms.length > 0 else noContent">
-    <div class="container">
-        <div class="card">
-            <span>Turmas Cadastradas</span>
-            <div class="buttons">
-                <button>
-                    Cadastrar
-                    <i class="uil uil-plus-circle"></i>
-                </button>
-            </div>
-        </div>
+<div class="container">
+    <div class="header">
+        <button  (click)="navigate()"><i class="uil uil-corner-up-left-alt"></i></button>
+        <app-date></app-date>
     </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <span>Turmas Cadastradas {{ classrooms.length }} <i class="uil uil-bookmark warning"></i></span>
+    </div>
+</div>
+
+<div class="buttons">
+    <button type="button" *ngIf="!createClassroom" (click)="toggleCreateClassroom()">Cadastrar <i class="uil uil-angle-double-right"></i></button>
+    <button type="button" *ngIf="createClassroom" (click)="toggleCreateClassroom()">Cadastrar <i class="uil uil-angle-double-down"></i></button>
+</div>
+
+<ng-container *ngIf="createClassroom">
+    <div class="container">
+        <form>
+            <h4>Cadastrar nova turma</h4>
+            <div class="input-prepend">
+                <i class="uil uil-letter-english-a"></i>
+                <input type="text" placeholder="Nome da turma">
+            </div>
+            <div class="buttons">
+                <button>Salvar</button>
+            </div>
+        </form>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="classrooms.length > 0 else noClassrooms">
     <div class="container-grid">
         <app-card-classroom *ngFor="let classroom of classrooms" [classroom]="classroom"></app-card-classroom>
+    </div>
+</ng-container>
+
+<div class="container">
+    <div class="card shadow">
+        <span>Disciplinas Cadastradas {{ subjects.length }} <i class="uil uil-bookmark warning"></i></span>
+    </div>
+</div>
+
+<div class="buttons">
+    <button type="button" (click)="toggleCreateSubject()">Cadastrar</button>
+</div>
+
+<ng-container *ngIf="subjects.length > 0 else noSubjects">
+    <div class="container-grid" >
+        <app-card-subject *ngFor="let subject of subjects" [subject]="subject"></app-card-subject>
     </div>
 </ng-container>
 
@@ -19,8 +57,21 @@
 
 
 
-<ng-template #noContent>
-    <div class="container" style="align-items: center; justify-content: center; margin-top: 5%;">
-        <span style="color: #8487EE;">Nenhum dado foi encontrado!<i class="uil uil-folder-question" style="color: #8487EE;"></i></span>
+<ng-template #noClassrooms>
+    <div class="container">
+        <div class="no-data">
+            <span>Nenhuma Turma foi encontrada.</span>
+            <img src="assets/no-classroom.svg" alt="">
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #noSubjects>
+    <div class="container">
+        <div class="no-data">
+            <span>Nenhuma Disciplina foi encontrada.</span>
+            <img src="assets/no-subject.svg" alt="">
+        </div>
     </div>
 </ng-template>

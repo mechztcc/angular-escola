@@ -68,7 +68,9 @@ export class HomeComponent implements OnInit {
     this.classrooms$.subscribe(
       (data) => {
         if(data.length > 0) {
-          this.classrooms = data;    
+          this.classrooms = data;   
+          console.log('class', data);
+           
         } else { 
           this.listApi();
         }
@@ -83,6 +85,8 @@ export class HomeComponent implements OnInit {
         console.log(data);
         data.forEach((classroom) => {
           this.store.dispatch(new ClassroomNew({ classroom: classroom }));
+
+          
         })
       }).add(() => {
         this.loading = false;

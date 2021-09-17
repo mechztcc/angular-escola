@@ -13,8 +13,7 @@
 
 <div class="container space-between">
     <button type="button" (click)="toggleCreate()">
-        Criar nova
-        <i class="uil uil-plus"></i>
+        Cadastrar nova
     </button>
     <div class="search">
         <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
@@ -49,6 +48,8 @@
         <app-card-select-school *ngFor="let school of userSchools" [school]="school"></app-card-select-school>
     </div>
 </ng-container>
+
+
 
 
 <ng-template #noContent>

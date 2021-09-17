@@ -150,12 +150,12 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  saveStudent(data: IResponsible) {
+  saveStudent(resp: IResponsible) {
     this.student = {
       name: this.form.controls.name.value,
       birthDay: this.form.controls.birthDay.value,
       classroomId: this.form.controls.classroom.value,
-      responsibleId: data.id
+      responsibleId: resp.id
     }
     this.loadingSavement = true;
     this.studentsService.createStudent(this.student)
