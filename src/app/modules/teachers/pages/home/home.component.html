@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<ng-container *ngIf="createTeacher">
+<ng-container *ngIf="createTeacher && schools.length > 0">
   <div class="container-column">
     <form [formGroup]="form" (ngSubmit)="validateForm()">
       <label for="name">Cadastrar novo professor</label>
@@ -65,6 +65,15 @@
         </button>
       </div>
     </form>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="schools.length == 0">
+  <div class="container">
+    <div class="alert">
+      <span>Antes de cadastrar um PROFESSOR, você precisa cadastrar uma ESCOLA</span>
+      <span><i class="uil uil-exclamation-triangle"></i></span>
+    </div>
   </div>
 </ng-container>
 
