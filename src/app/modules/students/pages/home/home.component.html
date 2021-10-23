@@ -1,82 +1,91 @@
 <div class="container">
-    <div class="header space-between">
-        <button (click)="navigate()">Voltar</button>
-        <app-date></app-date>
-    </div>
+  <div class="header space-between">
+    <button (click)="navigate()">Voltar</button>
+    <app-date></app-date>
+  </div>
 </div>
 
 <div class="container">
-    <div class="card">
-        <span>Alunos cadastrados no Sistema {{ students.length }}</span>
-    </div>
+  <div class="card">
+    <span>Alunos cadastrados no Sistema {{ students.length }}</span>
+  </div>
 </div>
 
 <div class="container space-between">
-    <button type="button" (click)="toggleCreate()" *ngIf="!createStudent">
-        Cadastrar
-        <i class="uil uil-angle-double-right"></i>
-    </button>
-    <button type="button" (click)="toggleCreate()" *ngIf="createStudent">
-        Cadastrar
-        <i class="uil uil-angle-double-down"></i>
-    </button>
-    <div class="search">
-        <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
-    </div>
+  <button type="button" (click)="toggleCreate()" *ngIf="!createStudent">
+    Cadastrar
+    <i class="uil uil-angle-double-right"></i>
+  </button>
+  <button type="button" (click)="toggleCreate()" *ngIf="createStudent">
+    Cadastrar
+    <i class="uil uil-angle-double-down"></i>
+  </button>
+  <div class="search">
+    <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar" />
+  </div>
 </div>
 
 <ng-container *ngIf="createStudent">
-    <div class="container-column">
-        <form [formGroup]="form" (ngSubmit)="validateForm()">
-            <label for="name">Cadastrar novo Aluno</label>
-            <div class="input-prepend">
-                <i class="uil uil-font"></i>
-                <input type="text" placeholder="Nome completo" formControlName="name">
-            </div>
-            <div class="input-prepend">
-                <i class="uil uil-calendar-alt"></i>
-                <input type="text" placeholder="Data de nascimento" formControlName="birthDay">
-            </div>
-            <div class="input-prepend">
-                <i class="uil uil-books"></i>
-                <select name="" id="" (change)="setClassroom($event)">
-                    <option value="" selected>-- Selecione a  turma --</option>
-                    <option *ngFor="let classroom of classrooms" value="{{ classroom.id }}">{{ classroom.name }}</option>
-                </select>
-            </div>
-            <div class="input-prepend">
-                <i class="uil uil-user-arrows"></i>
-                <input type="text" placeholder="Nome do responsável" formControlName="responsibleName">
-            </div>
+  <div class="container-column">
+    <form [formGroup]="form" (ngSubmit)="validateForm()">
+      <label for="name">Cadastrar novo Aluno</label>
+      <div class="input-prepend">
+        <i class="uil uil-font"></i>
+        <input type="text" placeholder="Nome completo" formControlName="name" />
+      </div>
+      <div class="input-prepend">
+        <i class="uil uil-calendar-alt"></i>
+        <input type="text" placeholder="Data de nascimento" formControlName="birthDay" />
+      </div>
+      <div class="input-prepend">
+        <i class="uil uil-books"></i>
+        <select name="" id="" (change)="setClassroom($event)">
+          <option value="" selected>-- Selecione a turma --</option>
+          <option *ngFor="let classroom of classrooms" value="{{ classroom.id }}">
+            {{ classroom.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-prepend">
+        <i class="uil uil-user-arrows"></i>
+        <input type="text" placeholder="Nome do responsável" formControlName="responsibleName" />
+      </div>
 
-            <div class="input-prepend">
-                <i class="uil uil-envelope-upload"></i>
-                <input type="text" placeholder="E-mail do responsável" formControlName="email">
-            </div>
+      <div class="input-prepend">
+        <i class="uil uil-envelope-upload"></i>
+        <input type="text" placeholder="E-mail do responsável" formControlName="email" />
+      </div>
 
-            <div class="input-prepend">
-                <i class="uil uil-forwaded-call"></i>
-                <input type="text" placeholder="Telefone" formControlName="phone">
-            </div>
+      <div class="input-prepend">
+        <i class="uil uil-forwaded-call"></i>
+        <input type="text" placeholder="Telefone" formControlName="phone" />
+      </div>
 
-            <div class="input-prepend">
-                <i class="uil uil-bill"></i>
-                <input type="text" placeholder="Data de pagamento" formControlName="payment">
-            </div>
+      <div class="input-prepend">
+        <i class="uil uil-bill"></i>
+        <input type="text" placeholder="Data de pagamento" formControlName="payment" />
+      </div>
 
-            <div class="buttons">
-                <button *ngIf="!loadingSavement" type="submit">
-                    Salvar
-                </button>
-                <button *ngIf="loadingSavement">
-                    Processando
-                    <i class="uil uil-sync"></i>
-                </button>
-            </div>
-        </form>
-    </div>
+      <div class="buttons">
+        <button *ngIf="!loadingSavement" type="submit">Salvar</button>
+        <button *ngIf="loadingSavement">
+          Processando
+          <i class="uil uil-sync"></i>
+        </button>
+      </div>
+    </form>
+  </div>
 </ng-container>
 
-<div class="container" style="justify-content: center;overflow-x: scroll;">
-    <app-table-list  [students]="students"></app-table-list>
+<div class="container-grid" *ngIf="students.length > 0; else noContent">
+  <app-card-student *ngFor="let student of students" [student]="student"></app-card-student>
 </div>
+
+<ng-template #noContent>
+  <div class="container">
+    <div class="no-data">
+      <span>Nenhuma Aluno Encontrada.</span>
+      <img src="assets/no-student.svg" alt="" />
+    </div>
+  </div>
+</ng-template>
