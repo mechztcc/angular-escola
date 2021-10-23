@@ -1,89 +1,84 @@
 <div class="container">
-    <div class="header space-between">
-        <button (click)="navigate()">Voltar</button>
-        <app-date></app-date>
-    </div>
+  <div class="header space-between">
+    <button (click)="navigate()">Voltar</button>
+    <app-date></app-date>
+  </div>
 </div>
 
 <div class="container">
-    <div class="card ">
-        <span >Professores cadastrados no Sistema {{ teachers.length }}</span>
-    </div>
+  <div class="card">
+    <span>Professores cadastrados no Sistema {{ teachers.length }}</span>
+  </div>
 </div>
 
 <div class="container space-between">
-    <button type="button" (click)="toggleCreate()">
-        Cadastrar
-        <i *ngIf="!createTeacher" class="uil uil-angle-double-right"></i>
-        <i *ngIf="createTeacher" class="uil uil-angle-double-down"></i>
-    </button>
-    <div class="search">
-        <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar">
-    </div>
+  <button type="button" (click)="toggleCreate()">
+    Cadastrar
+    <i *ngIf="!createTeacher" class="uil uil-angle-double-right"></i>
+    <i *ngIf="createTeacher" class="uil uil-angle-double-down"></i>
+  </button>
+  <div class="search">
+    <input type="text" placeholder="Procurar" (keyup)="filter($event.target)" name="procurar" />
+  </div>
 </div>
 
 <ng-container *ngIf="createTeacher">
-    <div class="container-column">
-        <form [formGroup]="form" (ngSubmit)="validateForm()">
-            <label for="name">Cadastrar novo professor</label>
-            <div class="input-prepend">
-                <i class="uil uil-graduation-cap"></i>
-                <input type="text" placeholder="Nome do professor" formControlName="name" (keyup)="setTeacherName" formControlName="name">
-            </div>
-            
-            <div class="input-prepend">
-                <i class="uil uil-calendar-alt"></i>
-                <input type="text" placeholder="Data de pagamento" formControlName="paymentDay" (keyup)="setTeacherName" formControlName="paymentDay">
-            </div>
+  <div class="container-column">
+    <form [formGroup]="form" (ngSubmit)="validateForm()">
+      <label for="name">Cadastrar novo professor</label>
+      <div class="input-prepend">
+        <i class="uil uil-graduation-cap"></i>
+        <input type="text" placeholder="Nome do professor" formControlName="name" (keyup)="(setTeacherName)" formControlName="name" />
+      </div>
 
-            <div class="input-prepend">
-                <i class="uil uil-bell-school"></i>
-                <select name="" id="" *ngIf="schools.length > 0" (change)="setClassroom($event)" formControlName="school">
-                    <option value=""selected> -- Selecione a escola--</option>
-                    <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
-                </select>
-            </div>
+      <div class="input-prepend">
+        <i class="uil uil-calendar-alt"></i>
+        <input type="text" placeholder="Data de pagamento" formControlName="paymentDay" (keyup)="(setTeacherName)" formControlName="paymentDay" />
+      </div>
 
-            <div class="input-prepend" *ngIf="subjects.length > 0">
-                <i class="uil uil-book-open"></i>
-                <select name="" id=""  (click)="listSubjects()" formControlName="subject" (change)="setSubject($event)">
-                    <option value=""selected> -- Selecione a disciplina--</option>
-                    <option value="{{ subject.name }}" *ngFor="let subject of subjects">{{ subject.name }}</option>
-                </select>
-            </div>
+      <div class="input-prepend">
+        <i class="uil uil-bell-school"></i>
+        <select name="" id="" *ngIf="schools.length > 0" (change)="setClassroom($event)" formControlName="school">
+          <option value="" selected>-- Selecione a escola--</option>
+          <option value="{{ school.id }}" *ngFor="let school of schools">{{ school.name }}</option>
+        </select>
+      </div>
 
-            <div class="input-prepend" *ngIf="subjects.length <= 0">
-                <i class="uil uil-book-alt"></i>
-                <input type="text" disabled placeholder="Primeiro selecione uma escola">
-            </div>
-       
+      <div class="input-prepend" *ngIf="subjects.length > 0">
+        <i class="uil uil-book-open"></i>
+        <select name="" id="" (click)="listSubjects()" formControlName="subject" (change)="setSubject($event)">
+          <option value="" selected>-- Selecione a disciplina--</option>
+          <option value="{{ subject.name }}" *ngFor="let subject of subjects">{{ subject.name }}</option>
+        </select>
+      </div>
 
-            <div class="buttons">
-                <button *ngIf="!loading" type="submit">
-                    Criar
-                </button>
-                <button *ngIf="loading">
-                    Processando
-                    <i class="uil uil-sync"></i>
-                </button>
-            </div>
-        </form>
-    </div>
+      <div class="input-prepend" *ngIf="subjects.length <= 0">
+        <i class="uil uil-book-alt"></i>
+        <input type="text" disabled placeholder="Primeiro selecione uma escola" />
+      </div>
+
+      <div class="buttons">
+        <button *ngIf="!loading" type="submit">Criar</button>
+        <button *ngIf="loading">
+          Processando
+          <i class="uil uil-sync"></i>
+        </button>
+      </div>
+    </form>
+  </div>
 </ng-container>
 
-<ng-container *ngIf="teachers.length > 0 else noContent">
-    <div class="container">
-        <span *ngFor="let teacher of teachers">{{ teacher.name }}</span>
-    </div>
+<ng-container *ngIf="teachers.length > 0; else noContent">
+  <div class="container-grid">
+    <app-card-teacher *ngFor="let teacher of teachers" [teacher]="teacher"></app-card-teacher>
+  </div>
 </ng-container>
-
-
 
 <ng-template #noContent>
-    <div class="container">
-        <div class="no-data">
-            <span>Nenhum Professor foi encontrado.</span>
-            <img src="assets/teacher.svg" alt="">
-        </div>
+  <div class="container">
+    <div class="no-data">
+      <span>Nenhum Professor foi encontrado.</span>
+      <img src="assets/teacher.svg" alt="" />
     </div>
+  </div>
 </ng-template>
